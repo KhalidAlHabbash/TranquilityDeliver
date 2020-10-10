@@ -20,7 +20,7 @@ Why are we of benefit?
 ###*UserStories*
 - As a user, I want to be able to add packages to a drivers list of packages to deliver.
 - As a user, I want to be able to check each packages details individually. 
-- As a user, I want to be able to create check which packages are closest to the driver.
+- As a user, I want to be able to check which packages are closest to the driver.
 - As a user, I want to be able to create multiple drivers, each with a special employee ID.
 - As a user, I want to be able to check if the drivers have completed all deliveries successfully.
 
