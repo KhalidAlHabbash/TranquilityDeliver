@@ -1,82 +1,183 @@
 package model;
 
-import model.PackagesList;
-
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 /**
- * Driver class contains information required for a driver -> driverName, a unique driverID, driverPhoneNumber, a list of
- * packages needed to be delivered, a license plate number of the drivers car,
- * and a last seen coordinate which is set when the driver has completed the first delivery.
+ * Driver class contains information required for a driver -> driverName, a unique driverID  which is chosen by the user
+ * and is must be 5 integers, a list of packages needed to be delivered, a license plate number of
+ * the drivers car, and a last seen coordinate which is set when the driver has completed the first delivery.
  * Each driver has a MINIMUM_PACKAGES, which is the minimum number of packages needed to be delivered daily,
- * there is no max.
- * A driver is able to add packages, find out how many packages left to deliver, know the location of each package,
- * and ask which package deliver next according to which is closest.
+ * and a maximum of 35 packages a day.
+ * A driver is able to add packages, remove packages, find out how many packages left to deliver,
+ * know the location of each package, and find out which package to deliver next according to which is closest.
  */
 public class Driver {
-    private final int MINIMUM_PACKAGES = 10;
+    public static final int MINIMUM_PACKAGES = 5;
+    public static final int MAXIMUM_PACKAGES = 35;
     private String driverName;
-    private int driverID;
-    private int driverPhoneNumber;
+    private String driverID;
     private String licensePlate;
     private Point lastSeenLocation;
     private PackagesList driversDeliveries;
-    public Package currentPackageDelivering;
-    private static boolean firstDelivery;
+    private Package currentPackageDelivering;
+    private boolean firstDelivery;
 
-    //EFFECTS: constructs a driver with a name, driverID, phoneNumber & the drivers car license plate, and sets location
-    // to (0,0) ---> UNKNOWN as of know
-    public Driver(String name, int driverID, int phoneNumber, String licensePlate) {
+    //REQUIRES: driverID to be = 5 integers
+    //EFFECTS: constructs a driver with a name, driverID of , phoneNumber & the drivers car license plate,
+    // and sets location to (0,0) ---> UNKNOWN as of know
+    public Driver(String name, String driverID, String licensePlate) {
         this.driverName = name;
         this.driverID = driverID;
-        this.driverPhoneNumber = phoneNumber;
         this.licensePlate = licensePlate;
-        this.lastSeenLocation = new Point(0, 0);     //NOT YET INITIALIZED
+        lastSeenLocation = new Point(0, 0);     //NOT YET INITIALIZED, since no package delivered yet
         driversDeliveries = new PackagesList();
         firstDelivery = true;
 
     }
 
-    // getter
+    // getters
+    public boolean isFirstDelivery() {
+        return firstDelivery;
+    }
+
+    public PackagesList getDriversDeliveries() {
+        return driversDeliveries;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
     public Package getCurrentPackageDelivering() {
         return currentPackageDelivering;
     }
 
-    //REQUIRES: firstDelivery = true;
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public String getDriverID() {
+        return driverID;
+    }
+
+    public Point getLastSeenLocation() {
+        return lastSeenLocation;
+    }
+
+    public int getLastSeenLocationx() {
+        return lastSeenLocation.x;
+    }
+
+    public int getLastSeenLocationy() {
+        return lastSeenLocation.y;
+    }
+
+
+    //EFFECTS: if driversDeliveres > MINIMUM_PACKAGES return true, else returns false
+    public boolean reachedMinimumNumberofDeliveries() {
+        if (driversDeliveries.getAllPackages().size() >= MINIMUM_PACKAGES) {
+            return true;
+        }
+        return false;
+    }
+
+    //EFFECTS: returns true if driver has no packages left to deliver, false otherwise
+    public boolean completedDeliveries() {
+        if (packagesLeft() == 0) {
+            return true;
+        }
+        return false;
+    }
+
     //MODIFIES: this
-    //EFFECTS: updates currentPackageDelivering to the first package in driverDeliveries, and its removed from
-    //driversDeliveries, the drivers firstDelivery is set to false and lastSeenLocation is updated to the location of
-    //currentpackageDelivering
-    public void startDelivering() {
-        if (firstDelivery) {
+    //EFFECTS: completes all of the drivers deliveries
+    public boolean completeAllDeliveries() {
+        driversDeliveries.getAllPackages().clear();
+        return true;
+    }
+
+    //REQUIRES: Package p does NOT already exist in driversDeliveries
+    //MODIFIES: this
+    //EFFECTS: adds Package p to driversDeliveries
+    public void addPackage(Package p) {
+        if (driversDeliveries.getAllPackages().size() < MAXIMUM_PACKAGES) {
+            driversDeliveries.addPackage(p);
+        }
+    }
+
+    //REQUIRES: Package p to be in driversDeliveries
+    //MODIFIES: this
+    //EFFECTS: if driversDelivers > MINIMUM_PACKAGES, remove Package p and return true, otherwise false
+    public boolean removePackage(Package p) {
+        if (driversDeliveries.getAllPackages().size() > MINIMUM_PACKAGES) {
+            driversDeliveries.removePackage(p);
+            return true;
+        }
+        return false;
+    }
+
+    //REQUIRES: firstDelivery = true
+    //MODIFIES: this
+    //EFFECTS:if driversDeliveries >= MINIMUM_PACKAGES, and its there first delivery it updates currentPackageDelivering
+    // to the first package in driverDeliveries, and that package is removed from driversDeliveries, the drivers
+    // firstDelivery is updated to false and lastSeenLocation is updated to the location of CurrentpackageDelivering
+    public boolean startDelivering() {
+        if (reachedMinimumNumberofDeliveries()) {
             currentPackageDelivering = driversDeliveries.getAllPackages().get(0);
             driversDeliveries.removePackage(currentPackageDelivering);
             firstDelivery = false;
             this.lastSeenLocation = currentPackageDelivering.getDeliveryLocation();
+            currentPackageDelivering.setStatusToDelivered();
+            return true;
         }
-//        else {
-//            for (Package p)
-//            currentPackageDelivering = driversDeliveries.getNextPackage();
-//            this.lastSeenLocation = currentPackageDelivering.getDeliveryLocation();
+        return false;
+    }
+
+    //EFFECTS: returns closest package to drivers lastSeenLocation
+    private Package findNearestPackage() {
+        Package closest = new Package();
+        double distance = 100000.0;
+        for (Package p : driversDeliveries.getAllPackages()) {
+            double closestDistance = getLastSeenLocation().distance(p.getDeliveryLocation());
+            if (closestDistance <= distance) {
+                distance = closestDistance;
+                closest = p;
+            }
+        }
+        return closest;
     }
 
     //MODIFIES: this
-    //EFFECTS: updates drivers currentPackageDelivering to the nearest delivery abnd updates driver lastSeenLocation
-    // to the location of currentPackageDelivering
-    public void deliverNextPackage() {
-        currentPackageDelivering = driversDeliveries.getNextPackage();
+    //EFFECTS: finds next nearest delivery available, updates drivers currentPackageDelivering to it,
+    //removes currentPackageDelivering from driversDeliveries, sets it to delivered
+    // and updates driver lastSeenLocation to the location of currentPackageDelivering, returns currentPackageDelivering
+    public Package deliverNextPackage() {
+        Package closest = findNearestPackage();
+        this.currentPackageDelivering = closest;
         this.lastSeenLocation = currentPackageDelivering.getDeliveryLocation();
+        currentPackageDelivering.setStatusToDelivered();
+        driversDeliveries.removePackage(closest);
+        return currentPackageDelivering = closest;
     }
 
-
-    public void addPackage(Package p) {
-        driversDeliveries.addPackage(p);
+    //REQUIRES: firstDelivery = false
+    //EFFECTS: returns the closest package to the driver
+    public Package checkNearestPackage() {
+        return findNearestPackage();
     }
 
-    public void packagesLeft() {
-        driversDeliveries.getPackagesInList();
+    //EFFECTS: returns an int of how many packages are left to deliver
+    public int packagesLeft() {
+        return driversDeliveries.getAllPackages().size();
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: generates a random unique number (including boundaries) from -> [1000,9999]
+    public int generateRandomNumber() {
+        Random rand = new Random();
+        int r2 = 1000 + rand.nextInt(10000 - 1000);
+        return r2;
+    }
 }

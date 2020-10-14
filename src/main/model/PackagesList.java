@@ -2,18 +2,35 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * A list to store all packages a driver will be delivering. With the packagesList,  you are able to check whether
+ * the list contains a certain package, add a package, remove a package, and return the next package in the list.
+ */
 public class PackagesList extends Package {
-    public List<Package> allPackages;
+    protected List<Package> allPackages;
+    private Package currentPackage;
 
     //EFFECTS: constructs an empty package list
     public PackagesList() {
-        allPackages = new ArrayList<>();
+        allPackages = new CopyOnWriteArrayList<>();
     }
 
     //getter
     public List<Package> getAllPackages() {
         return allPackages;
+    }
+
+    //EFFECTS: if allPackages contains Packpage p return true, false otherwise
+    public boolean contains(Package p) {
+        return allPackages.contains(p);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: adds Package p to list of packages
+    public void addPackage(Package p) {
+        allPackages.add(p);
     }
 
     //REQUIRES: Package p to be one of the packages in allPackages
@@ -23,34 +40,14 @@ public class PackagesList extends Package {
         allPackages.remove(p);
     }
 
-    //REQUIRES: allPackages to not empty
-    //EFFECTS: prints out all packages in the drivers list
-    public void getPackagesInList() {
-
-
-    }
-}
-
+    //REQUIRES: allPackages > 0
     //MODIFIES: this
-    //EFFECTS: if package list is empty print "No packages left to deliver", else returns the first package closest to
-    // the driver and  removes it from the list
+    //EFFECTS:  returns the next package in the packages list
     public Package getNextPackage() {
-        if (allPackages.size() > 0) {
-            for (Package p : allPackages) {
-
-            }
+        for (Package p : allPackages) {
+            currentPackage = p;
+            break;
         }
-        return null;
+        return currentPackage;
     }
-
-    //MODIFIES: this
-    //EFFECTS: adds Package p to list of packages
-    public void addPackage(Package p) {
-        allPackages.add(p);
-    }
-
-
-
-
-
 }

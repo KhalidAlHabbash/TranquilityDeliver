@@ -4,59 +4,57 @@ import java.awt.Point;
 import java.util.Date;
 import java.util.Random;
 
-/**Package class represents a package consisting of a special int packageID, unique for each package.
+/**
+ * Package class represents a package consisting of a packageID, unique for each package.
  * As well as a coordinate deliveryLocation ([0-100],[0-100]) not including 0, but including 100, a customerName,
- * datePackageIntiated, and checking whether a package is delivered or not (isDelivered).
- *
- *
+ * dateOrdered, and package delivery status.
  */
 public class Package {
     private int packageID;
-    private int customerPhoneNumber;
+    private String customerPhoneNumber;
     private Point deliveryLocation;
     private String customerName;
-    private Date dateOrdered;
+    private String dateOrdered;
     private boolean deliveryStatus;
 
-    public Package() {
-    }
-
-    public Package(int customerPhoneNumber, Point deliveryLocation, String customerName, Date dateOrdered) {
-        this.customerPhoneNumber = customerPhoneNumber;
-        this.deliveryLocation = deliveryLocation;
-        this.customerName = customerName;
-        this.dateOrdered = dateOrdered;
-        this.packageID = generateRandomNumber();
-    }
-
     //getters
-    public int getPackageID() {
-        return packageID;
-    }
-
-    public int getCustomerPhoneNumber() {
-        return customerPhoneNumber;
+    public String getCustomerPhoneNumber() {
+        return this.customerPhoneNumber;
     }
 
     public Point getDeliveryLocation() {
-        return deliveryLocation;
+        return this.deliveryLocation;
     }
 
     public String getCustomerName() {
         return customerName;
     }
 
-    public Date getDateOrdered() {
+    public String getDateOrdered() {
         return dateOrdered;
     }
 
-    public boolean getStatus() {
-        return deliveryStatus;
+    public boolean getDeliveryStatus() {
+        return this.deliveryStatus;
     }
 
-    //setters
+    //setter
     public void setStatusToDelivered() {
-        deliveryStatus = true;
+        this.deliveryStatus = true;
+    }
+
+    //EFFECTS: creates a Package object with no information
+    public Package() {
+    }
+
+    //EFFECTS: constructs a new package with customerPhoneNumber, deliveryLocation, customerName, and dateOrdered
+    public Package(String customerPhoneNumber, Point deliveryLocation, String customerName, String dateOrdered) {
+        this.customerPhoneNumber = customerPhoneNumber;
+        this.deliveryLocation = deliveryLocation;
+        this.customerName = customerName;
+        this.dateOrdered = dateOrdered;
+        this.packageID = generateRandomNumber();
+        deliveryStatus = false;
     }
 
     //MODIFIES: this
@@ -66,7 +64,5 @@ public class Package {
         int r2 = 1000 + rand.nextInt(10000 - 1000);
         return r2;
     }
-
-
 }
 
