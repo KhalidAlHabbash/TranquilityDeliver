@@ -44,10 +44,11 @@ public class PackagesList extends Package {
     //MODIFIES: this
     //EFFECTS:  returns the next package in the packages list
     public Package getNextPackage() {
+        Package nextPackage = new Package();
         for (Package p : allPackages) {
-            currentPackage = p;
+            nextPackage = p;
             break;
         }
-        return currentPackage;
+        return nextPackage;
     }
 }
