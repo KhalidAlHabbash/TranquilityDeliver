@@ -102,6 +102,8 @@ public class TranquilityDeliveryApp {
         startDeliveryYesNo(answer1);
     }
 
+    //MODIFIES: this
+    //EFFECTS: starts the drivers first delivery based on the users input
     private void startDeliveryYesNo(String answer1) {
         if (answer1.equals("y") | answer1.equals("Y") | answer1.equals("yes") | answer1.equals("Yes")
                 | answer1.equals("YES")) {
