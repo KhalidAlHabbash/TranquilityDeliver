@@ -1,7 +1,5 @@
 package ui;
 
-import com.oracle.javafx.jmx.json.JSONReader;
-import jdk.nashorn.internal.ir.debug.JSONWriter;
 import model.Package;
 import model.Driver;
 import persistence.JsonFileReader;
