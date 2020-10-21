@@ -2,7 +2,6 @@ package model;
 
 import java.awt.*;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Driver class contains information required for a driver -> driverName, a unique driverID  which is chosen by the user
