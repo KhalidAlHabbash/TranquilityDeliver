@@ -1,13 +1,14 @@
 {
   "driversDeliveries": [],
-  "driverName": null,
+  "driverName": "",
   "MINIMUM_PACKAGES": 5,
-  "MAX_PACKAGES": 10,
-  "driverID": null,
-  "driverLicensePlate": null,
+  "MAX_PACKAGES": 35,
+  "driverID": "",
+  "driverLicensePlate": "",
   "lastSeenLocation": null,
   "currentPackageDelivering": null,
-  "firstDelivery": true
+  "firstDelivery": true,
+  "licensePlate": ""
 }
 
 

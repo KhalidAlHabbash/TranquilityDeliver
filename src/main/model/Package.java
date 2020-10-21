@@ -25,11 +25,7 @@ public class Package implements JsonWritable {
     public String getCustomerPhoneNumber() {
         return this.customerPhoneNumber;
     }
-
-    public int getPackageID() {
-        return this.packageID;
-    }
-
+    
     public Point getDeliveryLocation() {
         return this.deliveryLocation;
     }

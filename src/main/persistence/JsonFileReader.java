@@ -19,6 +19,11 @@ import java.util.stream.Stream;
 public class JsonFileReader {
     private String fileSource;
 
+    //getter
+    public String getFileSource() {
+        return fileSource;
+    }
+
     //EFFECTS: constructs A JSON file reader that reads data stored in JSON file source
     public JsonFileReader(String source) {
         this.fileSource = source;

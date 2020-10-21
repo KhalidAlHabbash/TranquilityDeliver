@@ -19,6 +19,7 @@ import java.util.Scanner;
  * know the location of each package, and find out which package to deliver next according to which is closest.
  */
 public class Driver implements JsonWritable {
+
     public static final int MINIMUM_PACKAGES = 5;
     public static final int MAXIMUM_PACKAGES = 35;
     private String driverName;
@@ -76,6 +77,14 @@ public class Driver implements JsonWritable {
 
     public int getLastSeenLocationy() {
         return lastSeenLocation.y;
+    }
+
+    public static int getMinimumPackages() {
+        return MINIMUM_PACKAGES;
+    }
+
+    public static int getMaximumPackages() {
+        return MAXIMUM_PACKAGES;
     }
 
 

@@ -1,6 +1,7 @@
 {
   "driversDeliveries": [
     {
+      "customerName": "Sharif",
       "packageID": "01928",
       "phoneNumber": "6043487771",
       "deliveringLocation": "(21,90)",
@@ -9,6 +10,7 @@
       "deliveryStatus": false
     },
     {
+      "customerName": "Sofia",
       "packageID": "01872",
       "phoneNumber": "6046172621",
       "deliveringLocation": "(29,20)",
@@ -21,7 +23,7 @@
   "MINIMUM_PACKAGES": 5,
   "MAX_PACKAGES": 10,
   "driverID": "19282",
-  "driverLicensePlate": "5402 VRB",
+  "licensePlate": "5402 VRB",
   "lastSeenLocation": "(25,90)",
   "currentPackageDelivering": "Maya's",
   "firstDelivery": false
