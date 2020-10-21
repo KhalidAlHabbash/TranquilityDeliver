@@ -1,8 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.JsonWritable;
+
 import java.awt.*;
 import java.util.Random;
 import java.util.Scanner;
+
 
 /**
  * Driver class contains information required for a driver -> driverName, a unique driverID  which is chosen by the user
@@ -13,7 +18,7 @@ import java.util.Scanner;
  * A driver is able to add packages, remove packages, find out how many packages left to deliver,
  * know the location of each package, and find out which package to deliver next according to which is closest.
  */
-public class Driver {
+public class Driver implements JsonWritable {
     public static final int MINIMUM_PACKAGES = 5;
     public static final int MAXIMUM_PACKAGES = 35;
     private String driverName;
@@ -34,7 +39,6 @@ public class Driver {
         lastSeenLocation = new Point(0, 0);     //NOT YET INITIALIZED, since no package delivered yet
         driversDeliveries = new PackagesList();
         firstDelivery = true;
-
     }
 
     // getters
@@ -77,18 +81,12 @@ public class Driver {
 
     //EFFECTS: if driversDeliveres > MINIMUM_PACKAGES return true, else returns false
     public boolean reachedMinimumNumberofDeliveries() {
-        if (driversDeliveries.getAllPackages().size() >= MINIMUM_PACKAGES) {
-            return true;
-        }
-        return false;
+        return driversDeliveries.getAllPackages().size() >= MINIMUM_PACKAGES;
     }
 
     //EFFECTS: returns true if driver has no packages left to deliver, false otherwise
     public boolean completedDeliveries() {
-        if (packagesLeft() == 0) {
-            return true;
-        }
-        return false;
+        return packagesLeft() == 0;
     }
 
     //MODIFIES: this
@@ -180,4 +178,29 @@ public class Driver {
         int r2 = 1000 + rand.nextInt(10000 - 1000);
         return r2;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject driverJson = new JSONObject();
+        driverJson.put("driverName", this.driverName);
+        driverJson.put("driverID", this.driverID);
+        driverJson.put("licensePlate", this.licensePlate);
+        driverJson.put("lastSeenLocation", this.lastSeenLocation);
+        driverJson.put("driversDeliveries", deliveriesToJson());
+        driverJson.put("currentPackageDelivering", this.currentPackageDelivering);
+        driverJson.put("firstDelivery", this.firstDelivery);
+        return driverJson;
+    }
+
+
+    //EFFECTS: returns driversDeliveries stored as a JSON array
+    public JSONArray deliveriesToJson() {
+        JSONArray deliveriesArrayJson = new JSONArray();
+
+        for (Package deliveries : this.driversDeliveries.getAllPackages()) {
+            deliveriesArrayJson.put(deliveries.toJson());
+        }
+        return deliveriesArrayJson;
+    }
 }
+

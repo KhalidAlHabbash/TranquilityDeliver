@@ -1,0 +1,28 @@
+{
+  "driversDeliveries": [
+    {
+      "packageID": "01928",
+      "phoneNumber": "6043487771",
+      "deliveringLocation": "(21,90)",
+      "name": "Khalid",
+      "dateOrdered": "10/18/2020",
+      "deliveryStatus": false
+    },
+    {
+      "packageID": "01872",
+      "phoneNumber": "6046172621",
+      "deliveringLocation": "(29,20)",
+      "name": "Dana",
+      "dateOrdered": "12/18/2021",
+      "deliveryStatus": false
+    }
+  ],
+  "driverName": "Logan",
+  "MINIMUM_PACKAGES": 5,
+  "MAX_PACKAGES": 10,
+  "driverID": "19282",
+  "driverLicensePlate": "5402 VRB",
+  "lastSeenLocation": "(25,90)",
+  "currentPackageDelivering": "Maya's",
+  "firstDelivery": false
+}

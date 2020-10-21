@@ -1,20 +1,32 @@
 package ui;
 
+import com.oracle.javafx.jmx.json.JSONReader;
+import jdk.nashorn.internal.ir.debug.JSONWriter;
 import model.Package;
 import model.Driver;
+import persistence.JsonFileReader;
+import persistence.JsonFileWriter;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
 //Tranquility Deliver application
 public class TranquilityDeliveryApp {
+    private static final String JSON_SOURCE = "./data/driverData.json";
     private Driver dinput;
     private String name;
     private String driverID;
     private String licensePlate;
+    private JsonFileWriter jsonWriter;
+    private JsonFileReader jsonReader;
 
-    public TranquilityDeliveryApp() {
+    //EFFECTS: constructs jsonReader and jsonWriter and runs app
+    public TranquilityDeliveryApp() throws FileNotFoundException {
+        jsonReader = new JsonFileReader(JSON_SOURCE);
+        jsonWriter = new JsonFileWriter(JSON_SOURCE);
         runapp();
     }
 
@@ -125,6 +137,7 @@ public class TranquilityDeliveryApp {
             nearestDelivery();
         }
         System.out.println("\nCome back when you want to start, goodbye.");
+        System.exit(1);
     }
 
     //EFFECTS: prints the customerName and location of the packages to be delivered
@@ -203,5 +216,29 @@ public class TranquilityDeliveryApp {
         }
         nearestDelivery();
     }
+
+    // EFFECTS: saves the workroom to file
+    private void saveDriverData() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(dinput);
+            jsonWriter.close();
+            System.out.println("Saved " + dinput.getDriverName() + " to " + JSON_SOURCE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_SOURCE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadDriverData() {
+        try {
+            dinput = jsonReader.read();
+            System.out.println("Loaded " + dinput.getDriverName() + " from " + JSON_SOURCE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_SOURCE);
+        }
+    }
+
 }
 
