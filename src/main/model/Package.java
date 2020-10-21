@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.JsonWritable;
+
 import java.awt.Point;
 import java.util.Date;
 import java.util.Random;
@@ -9,7 +12,8 @@ import java.util.Random;
  * As well as a coordinate deliveryLocation ([0-100],[0-100]) not including 0, but including 100, a customerName,
  * dateOrdered, and package delivery status.
  */
-public class Package {
+public class Package implements JsonWritable {
+
     private int packageID;
     private String customerPhoneNumber;
     private Point deliveryLocation;
@@ -21,7 +25,7 @@ public class Package {
     public String getCustomerPhoneNumber() {
         return this.customerPhoneNumber;
     }
-
+    
     public Point getDeliveryLocation() {
         return this.deliveryLocation;
     }
@@ -63,6 +67,18 @@ public class Package {
         Random rand = new Random();
         int r2 = 1000 + rand.nextInt(10000 - 1000);
         return r2;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonPackage = new JSONObject();
+        jsonPackage.put("packageID", this.packageID);
+        jsonPackage.put("customerPhoneNumber", this.customerPhoneNumber);
+        jsonPackage.put("deliveryLocation", this.deliveryLocation);
+        jsonPackage.put("customerName", this.customerName);
+        jsonPackage.put("dateOrdered", this.dateOrdered);
+        jsonPackage.put("deliveryStatus", this.deliveryStatus);
+        return jsonPackage;
     }
 }
 
