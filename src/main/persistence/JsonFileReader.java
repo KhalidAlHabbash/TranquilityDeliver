@@ -74,9 +74,11 @@ public class JsonFileReader {
     public void addDelivery(Driver d, JSONObject jsonObject) {
         String name = jsonObject.getString("customerName");
         String customerPhoneNumber = jsonObject.getString("customerPhoneNumber");
-        Point location = (Point) jsonObject.get("deliveryLocation");
+        int locationx = jsonObject.getInt("deliveryLocationX");
+        int locationy = jsonObject.getInt("deliveryLocationY");
+        Point packageLocation = new Point(locationx,locationy);
         String dateOrdered = jsonObject.getString("dateOrdered");
-        Package p = new Package(customerPhoneNumber, location, name, dateOrdered);
+        Package p = new Package(customerPhoneNumber, packageLocation, name, dateOrdered);
         d.addPackage(p);
     }
 }

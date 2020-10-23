@@ -50,7 +50,8 @@ public class JsonReaderTest {
              assertEquals(35,dr.getMaximumPackages());
              assertEquals("",dr.getDriverID());
              assertEquals("",dr.getLicensePlate());
-             assertEquals(new Point(0,0),dr.getLastSeenLocation());
+             assertEquals(0,dr.getLastSeenLocationx());
+            assertEquals(0,dr.getLastSeenLocationy());
              assertEquals(null,dr.getCurrentPackageDelivering());
              assertTrue(dr.isFirstDelivery());
         } catch (IOException e) {
@@ -70,8 +71,8 @@ public class JsonReaderTest {
             assertEquals("19282",dr.getDriverID());
             assertEquals("5402 VRB",dr.getLicensePlate());
             dr.startDelivering();
-            assertEquals(dr.getCurrentPackageDelivering().getDeliveryLocation(),dr.getLastSeenLocation());
-            assertEquals(dr.getCurrentPackageDelivering(),dr.getCurrentPackageDelivering());
+            assertEquals(0,dr.getLastSeenLocationx());
+            assertEquals(0,dr.getLastSeenLocationy());
             assertTrue(dr.isFirstDelivery());
         } catch (IOException e) {
             fail("IOException should have not been thrown");

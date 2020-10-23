@@ -48,6 +48,7 @@ class DriverTest {
         assertEquals(0, dTest.getDriversDeliveries().getAllPackages().size());
         assertTrue(dTest.isFirstDelivery());
         assertEquals("68653", dTest.getDriverID());
+        assertEquals(null,dTest.getCurrentPackageDelivering());
     }
 
     @Test

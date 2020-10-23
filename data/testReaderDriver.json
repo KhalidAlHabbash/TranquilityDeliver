@@ -3,18 +3,18 @@
     {
       "customerName": "Sharif",
       "packageID": "01928",
-      "phoneNumber": "6043487771",
-      "deliveringLocation": "(21,90)",
-      "name": "Khalid",
+      "customerPhoneNumber": "6043487771",
+      "deliveryLocationX": 21,
+      "deliveryLocationY": 21,
       "dateOrdered": "10/18/2020",
       "deliveryStatus": false
     },
     {
-      "customerName": "Sofia",
       "packageID": "01872",
-      "phoneNumber": "6046172621",
-      "deliveringLocation": "(29,20)",
-      "name": "Dana",
+      "customerPhoneNumber": "6046172621",
+      "deliveryLocationX": 50,
+      "deliveryLocationY": 81,
+      "customerName": "Dana",
       "dateOrdered": "12/18/2021",
       "deliveryStatus": false
     }
@@ -24,7 +24,8 @@
   "MAX_PACKAGES": 10,
   "driverID": "19282",
   "licensePlate": "5402 VRB",
-  "lastSeenLocation": "(25,90)",
-  "currentPackageDelivering": "Maya's",
-  "firstDelivery": false
+  "lastSeenLocationX": 0,
+  "lastSeenLocationY": 0,
+  "currentPackageDelivering": null,
+  "firstDelivery": true
 }

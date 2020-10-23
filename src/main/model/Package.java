@@ -74,7 +74,8 @@ public class Package implements JsonWritable {
         JSONObject jsonPackage = new JSONObject();
         jsonPackage.put("packageID", this.packageID);
         jsonPackage.put("customerPhoneNumber", this.customerPhoneNumber);
-        jsonPackage.put("deliveryLocation", this.deliveryLocation);
+        jsonPackage.put("deliveryLocationX", this.deliveryLocation.x);
+        jsonPackage.put("deliveryLocationY", this.deliveryLocation.y);
         jsonPackage.put("customerName", this.customerName);
         jsonPackage.put("dateOrdered", this.dateOrdered);
         jsonPackage.put("deliveryStatus", this.deliveryStatus);

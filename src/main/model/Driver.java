@@ -38,6 +38,7 @@ public class Driver implements JsonWritable {
         this.licensePlate = licensePlate;
         lastSeenLocation = new Point(0, 0);     //NOT YET INITIALIZED, since no package delivered yet
         driversDeliveries = new PackagesList();
+        currentPackageDelivering = null;
         firstDelivery = true;
     }
 
@@ -127,8 +128,8 @@ public class Driver implements JsonWritable {
     //REQUIRES: firstDelivery = true
     //MODIFIES: this
     //EFFECTS:if driversDeliveries >= MINIMUM_PACKAGES, and its there first delivery it updates currentPackageDelivering
-    // to the first package in driverDeliveries, and that package is removed from driversDeliveries, the drivers
-    // firstDelivery is updated to false and lastSeenLocation is updated to the location of CurrentpackageDelivering
+    //     to the first package in driverDeliveries, and that package is removed from driversDeliveries, the drivers
+    //     firstDelivery is updated to false and lastSeenLocation is updated to the location of CurrentpackageDelivering
     public boolean startDelivering() {
         if (reachedMinimumNumberofDeliveries()) {
             currentPackageDelivering = driversDeliveries.getAllPackages().get(0);
@@ -193,7 +194,8 @@ public class Driver implements JsonWritable {
         driverJson.put("driverName", this.driverName);
         driverJson.put("driverID", this.driverID);
         driverJson.put("licensePlate", this.licensePlate);
-        driverJson.put("lastSeenLocation", this.lastSeenLocation);
+        driverJson.put("lastSeenLocationX", this.getLastSeenLocationx());
+        driverJson.put("lastSeenLocationY", this.getLastSeenLocationy());
         driverJson.put("driversDeliveries", deliveriesToJson());
         driverJson.put("currentPackageDelivering", this.currentPackageDelivering);
         driverJson.put("firstDelivery", this.firstDelivery);
