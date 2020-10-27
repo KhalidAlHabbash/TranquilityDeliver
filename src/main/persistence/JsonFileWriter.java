@@ -34,7 +34,6 @@ public class JsonFileWriter {
     public void write(Driver d) {
         JSONObject writeDriver = d.toJson();
         writeToFile(writeDriver);
-
     }
 
     //MODIFIES: this

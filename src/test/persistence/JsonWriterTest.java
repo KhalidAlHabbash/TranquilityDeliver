@@ -69,15 +69,13 @@ public class JsonWriterTest {
         try{
             dr = new Driver("YasoBoom","97128","64B ARB");
             dr.addPackage(p1);
-            dr.addPackage(p2);
             jsonWriter = new JsonFileWriter(jsonWriterNotEmpty);
             jsonWriter.open();
             jsonWriter.write(dr);
             jsonWriter.close();
-
             jsonReader = new JsonFileReader(jsonWriterNotEmpty);
             dr = jsonReader.read();
-            assertEquals(2,dr.getDriversDeliveries().getAllPackages().size());
+            assertEquals(1,dr.getDriversDeliveries().getAllPackages().size());
             assertEquals("YasoBoom",dr.getDriverName());
             assertEquals("97128",dr.getDriverID());
             assertEquals("64B ARB", dr.getLicensePlate());
@@ -97,7 +95,7 @@ public class JsonWriterTest {
     }
 
     @Test
-    public void testWriterWhenDelivering() {
+    public void testWriterBeforeDelivering() {
         try {
             dr = new Driver("Brandon","09121","091 YVR");
             dr.addPackage(p1);
@@ -112,21 +110,23 @@ public class JsonWriterTest {
             jsonReader = new JsonFileReader(jsonWriterNotEmpty);
             dr = jsonReader.read();
             assertEquals(5,dr.getDriversDeliveries().getAllPackages().size());
-
-            jsonWriter.open();
-            dr.startDelivering();
-            dr.deliverNextPackage();
-            jsonWriter.write(dr);
-            jsonWriter.close();
-            jsonReader = new JsonFileReader(jsonWriterNotEmpty);
-            dr = jsonReader.read();
-            assertEquals(3,dr.getDriversDeliveries().getAllPackages().size());
-            assertEquals(88,dr.getLastSeenLocation().y);
-            assertEquals(24,dr.getLastSeenLocation().x);
-            assertFalse(dr.isFirstDelivery());
-            assertEquals(p1,dr.getCurrentPackageDelivering());
+            testWriterWhenDelivering();
         } catch (IOException e) {
             System.out.println("IOException should have not been thrown");
         }
+    }
+
+    @Test
+    private void testWriterWhenDelivering() throws IOException {
+        jsonWriter.open();
+        dr.startDelivering();
+        dr.deliverNextPackage();
+        jsonWriter.write(dr);
+        jsonWriter.close();
+        dr = jsonReader.read();
+        assertFalse(dr.isFirstDelivery());
+        assertEquals(3,dr.getDriversDeliveries().getAllPackages().size());
+        assertEquals(24,dr.getLastSeenLocationx());
+        assertEquals(88,dr.getLastSeenLocationy());
     }
 }

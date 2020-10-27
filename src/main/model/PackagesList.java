@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -28,27 +27,21 @@ public class PackagesList extends Package {
     }
 
     //MODIFIES: this
-    //EFFECTS: adds Package p to list of packages
+    //EFFECTS:  adds Package p to list of packages
     public void addPackage(Package p) {
         allPackages.add(p);
     }
 
     //REQUIRES: Package p to be one of the packages in allPackages
     //MODIFIES: this
-    //EFFECTS: removes package p from allPackages
+    //EFFECTS:  removes package p from allPackages
     public void removePackage(Package p) {
         allPackages.remove(p);
     }
 
-    //REQUIRES: allPackages > 0
-    //MODIFIES: this
-    //EFFECTS:  returns the next package in the packages list
+    //EFFECTS: if drivers packages is empty throws EmptyDeliveriesException, else
+    //         returns the next package in the packages list
     public Package getNextPackage() {
-        Package nextPackage = new Package();
-        for (Package p : allPackages) {
-            nextPackage = p;
-            break;
-        }
-        return nextPackage;
+        return allPackages.get(0);
     }
 }

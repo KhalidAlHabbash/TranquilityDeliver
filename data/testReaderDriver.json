@@ -1,4 +1,12 @@
 {
+  "driverName": "Logan",
+  "MINIMUM_PACKAGES": 5,
+  "MAX_PACKAGES": 10,
+  "driverID": "19282",
+  "licensePlate": "5402 VRB",
+  "lastSeenLocationX": 0,
+  "lastSeenLocationY": 0,
+  "firstDelivery": true,
   "driversDeliveries": [
     {
       "customerName": "Sharif",
@@ -18,14 +26,5 @@
       "dateOrdered": "12/18/2021",
       "deliveryStatus": false
     }
-  ],
-  "driverName": "Logan",
-  "MINIMUM_PACKAGES": 5,
-  "MAX_PACKAGES": 10,
-  "driverID": "19282",
-  "licensePlate": "5402 VRB",
-  "lastSeenLocationX": 0,
-  "lastSeenLocationY": 0,
-  "currentPackageDelivering": null,
-  "firstDelivery": true
+  ]
 }

@@ -40,7 +40,6 @@ public class PackagListTest {
         assertEquals(p1, p.getNextPackage());
         p.addPackage(p2);
         assertEquals(p1, p.getNextPackage());
-
         p.removePackage(p1);
         p.addPackage(p2);
         assertEquals(p2, p.getNextPackage());

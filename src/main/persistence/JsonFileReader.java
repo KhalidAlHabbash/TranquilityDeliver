@@ -2,7 +2,6 @@ package persistence;
 
 import model.Driver;
 import model.Package;
-import model.PackagesList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -47,15 +46,31 @@ public class JsonFileReader {
         return contentBuilder.toString();
     }
 
+
     //EFFECTS: parses Driver from JSON object and returns it
     private Driver parseDriverData(JSONObject driverJsonObject) {
         String name = driverJsonObject.getString("driverName");
         String driverID = driverJsonObject.getString("driverID");
         String licensePlate = driverJsonObject.getString("licensePlate");
         Driver driver = new Driver(name, driverID, licensePlate);
-
+        setFirstDelivery(driver, driverJsonObject);
+        setLocationXY(driver, driverJsonObject);
+        driver.setLastSeenLocation(new Point(driver.getLastSeenLocationx(), driver.getLastSeenLocationy()));
         addDeliveries(driver, driverJsonObject);
         return driver;
+    }
+
+    //MODIFIES: d
+    //EFFECTS: updates Driver d lastSeenLocation.x and lastSeenLocation.y to driverJsonObject last seen location value
+    private void setLocationXY(Driver d, JSONObject driverJsonObject) {
+        d.setLastSeenLocationX(driverJsonObject.getInt("lastSeenLocationX"));
+        d.setLastSeenLocationY(driverJsonObject.getInt("lastSeenLocationY"));
+    }
+
+    //MODIFIES: d
+    //EFFECTS: sets driver firstDelivery field to driverJsonObject firstDelivery value
+    public void setFirstDelivery(Driver d, JSONObject driverJsonObject) {
+        d.setFirstDelivery(driverJsonObject.getBoolean("firstDelivery"));
     }
 
     //MODIFIES: d
@@ -76,7 +91,7 @@ public class JsonFileReader {
         String customerPhoneNumber = jsonObject.getString("customerPhoneNumber");
         int locationx = jsonObject.getInt("deliveryLocationX");
         int locationy = jsonObject.getInt("deliveryLocationY");
-        Point packageLocation = new Point(locationx,locationy);
+        Point packageLocation = new Point(locationx, locationy);
         String dateOrdered = jsonObject.getString("dateOrdered");
         Package p = new Package(customerPhoneNumber, packageLocation, name, dateOrdered);
         d.addPackage(p);

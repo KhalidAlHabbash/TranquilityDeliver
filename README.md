@@ -25,7 +25,9 @@ Why are we of benefit?
 - As a user, I want to be able to deliver the nearest package to me.
 - As a user, I want to be able to see all my deliveries for the day.
 - As a user, I want to be able to save my point of last deliver after having completed the minimum deliveries required.
-- As a user, I want to be able to continue delivering the remaining packages where I have left off.
+- As a user, I want to be able to continue delivering the remaining packages where I have left off, or add more packages to where I have left off.
+- As a user, I want to be able to continue automatically save when I do not want to deliver anymore.
+
 
 
 

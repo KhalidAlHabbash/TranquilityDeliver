@@ -20,6 +20,8 @@ public class TranquilityDeliveryApp {
     private String licensePlate;
     private JsonFileWriter jsonWriter;
     private JsonFileReader jsonReader;
+    private int count = 1;
+    private static boolean isSaved;
 
     //EFFECTS: constructs jsonReader and jsonWriter and runs app
     public TranquilityDeliveryApp() throws FileNotFoundException {
@@ -31,8 +33,7 @@ public class TranquilityDeliveryApp {
     //MODIFIES: this
     //EFFECTS: collects driver information, and creates a driver object with it
     public void runapp() {
-        System.out.println("Tranquility Deliver!");
-        System.out.println("-------------------------------------------------------");
+        System.out.println("-------------------------Tranquility Deliver-------------------------");
         System.out.println("To start delivering please provide us with your details.");
         Scanner name = new Scanner(System.in);
         System.out.println("\nFull name: ");
@@ -53,7 +54,40 @@ public class TranquilityDeliveryApp {
             break;
         }
         dinput = new Driver(this.name, this.driverID, this.licensePlate);
+        loadPreviousSave();
         getNumberofPackagestoDeliver();
+    }
+
+    //EFFECTS: if driversDeliveries > 0 loads previous save
+    private void loadPreviousSave() {
+        JsonFileReader js = new JsonFileReader("./data/driverData.json");
+        try {
+            if (js.read().getDriversDeliveries().getAllPackages().size() > 0) {
+                loadData();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //MODIFIES this
+    //EFFECTS: loads data saved in JSON file
+    private void loadData() {
+        Scanner load = new Scanner(System.in);
+        try {
+            dinput = jsonReader.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Continue where you left off? you have "
+                + dinput.getDriversDeliveries().getAllPackages().size() + " packages remaining.");
+        String loadData = load.nextLine().toLowerCase();
+        if (loadData.equals("y") | loadData.equals("Y") | loadData.equals("yes") | loadData.equals("Yes")
+                | loadData.equals("YES")) {
+            count = 0;
+            loadDriverData();
+            deliverNext("yes");
+        }
     }
 
     //MODIFIES: this
@@ -135,6 +169,7 @@ public class TranquilityDeliveryApp {
             nearestDelivery();
         }
         System.out.println("\nCome back when you want to start, goodbye.");
+        saveDriverData();
         System.exit(1);
     }
 
@@ -148,11 +183,12 @@ public class TranquilityDeliveryApp {
     }
 
     //EFFECTS: if the driver has completed all deliveries app ends, otherwise, prints out the nearest package
-    // and asks if the driver wants to deliver or not
+    //         and asks if the driver wants to deliver or not
     public void nearestDelivery() {
         if (dinput.completedDeliveries()) {
             System.out.println("\nYou have completed all deliveries for the day, please return tomorrow for "
                     + "more packages. Thank you!");
+            saveDriverData();
             System.exit(1);
         }
         Scanner input = new Scanner(System.in);
@@ -161,14 +197,15 @@ public class TranquilityDeliveryApp {
         String inputS = input.nextLine().toLowerCase();
         if (inputS.equals("n") | inputS.equals("NO") | inputS.equals("no") | inputS.equals("N")) {
             System.out.println("\nPlease sign in again to continue, goodbye.");
+            saveDriverData();
             System.exit(1);
         }
         deliverNext(inputS);
     }
 
-    //MODIFIES: this
+    //MODIFIES:this
     //EFFECTS: if drivers packages to deliver is > MINIMUM_PACKAGES, the driver can remove an extra package, otherwise
-    //no package can be removed
+    //         no package can be removed
     private void removeExtraPackages() {
         Scanner removePackage = new Scanner(System.in);
         System.out.println("\nWould you like to remove an extra package? Y/N");
@@ -193,9 +230,11 @@ public class TranquilityDeliveryApp {
     //MODIFIES: this
     //EFFECTS: delivers the next package
     private void deliverNext(String inputS) {
+        saveDataAfterDeliveringFive();
         if (inputS.equals("y") | inputS.equals("Y") | inputS.equals("yes") | inputS.equals("Yes")
                 | inputS.equals("YES")) {
             dinput.deliverNextPackage();
+            count++;
             System.out.println("\nDelivering package to " + "("
                     + dinput.getCurrentPackageDelivering().getDeliveryLocation().x + ","
                     + dinput.getCurrentPackageDelivering().getDeliveryLocation().y + ") for "
@@ -203,7 +242,7 @@ public class TranquilityDeliveryApp {
             new Thread(new Runnable() {
                 public void run() {
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -215,6 +254,25 @@ public class TranquilityDeliveryApp {
         nearestDelivery();
     }
 
+    //MODIFIES: this
+    //EFFECTS: after driver completes 5 deliveries, saving data is allowed
+    private void saveDataAfterDeliveringFive() {
+        if (count >= Driver.MINIMUM_PACKAGES) {
+            Scanner save = new Scanner(System.in);
+            System.out.println("Continue rest of deliveries tomorrow? ");
+            String saveData = save.nextLine().toLowerCase();
+            if (saveData.equals("y") | saveData.equals("Y") | saveData.equals("yes") | saveData.equals("Yes")
+                    | saveData.equals("YES")) {
+                isSaved = true;
+                saveDriverData();
+                System.exit(1);
+            } else {
+                isSaved = false;
+            }
+        }
+    }
+
+    //MODIFIES: this
     // EFFECTS: saves the workroom to file
     private void saveDriverData() {
         try {
@@ -237,6 +295,5 @@ public class TranquilityDeliveryApp {
             System.out.println("Unable to read from file: " + JSON_SOURCE);
         }
     }
-
 }
 

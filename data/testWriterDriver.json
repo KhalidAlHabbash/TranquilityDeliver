@@ -1,38 +1,17 @@
 {
-  "currentPackageDelivering": "model.Package@7d0587f1",
-  "licensePlate": "091 YVR",
-  "driverID": "09121",
-  "driverName": "Brandon",
-  "lastSeenLocationY": 88,
-  "firstDelivery": false,
-  "lastSeenLocationX": 24,
-  "driversDeliveries": [
-    {
-      "deliveryLocationX": 52,
-      "dateOrdered": "10/05/2020",
-      "packageID": 6313,
-      "customerPhoneNumber": "778222343",
-      "customerName": "Michael Jackson",
-      "deliveryStatus": false,
-      "deliveryLocationY": 90
-    },
-    {
-      "deliveryLocationX": 52,
-      "dateOrdered": "10/05/2020",
-      "packageID": 6313,
-      "customerPhoneNumber": "778222343",
-      "customerName": "Michael Jackson",
-      "deliveryStatus": false,
-      "deliveryLocationY": 90
-    },
-    {
-      "deliveryLocationX": 52,
-      "dateOrdered": "10/05/2020",
-      "packageID": 6313,
-      "customerPhoneNumber": "778222343",
-      "customerName": "Michael Jackson",
-      "deliveryStatus": false,
-      "deliveryLocationY": 90
-    }
-  ]
+  "licensePlate": "64B ARB",
+  "driverID": "97128",
+  "driverName": "YasoBoom",
+  "lastSeenLocationY": 0,
+  "firstDelivery": true,
+  "lastSeenLocationX": 0,
+  "driversDeliveries": [{
+    "deliveryLocationX": 24,
+    "dateOrdered": "10/09/2020",
+    "packageID": 7489,
+    "customerPhoneNumber": "778222777",
+    "customerName": "Jay",
+    "deliveryStatus": false,
+    "deliveryLocationY": 88
+  }]
 }

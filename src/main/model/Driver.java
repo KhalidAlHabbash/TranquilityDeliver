@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import persistence.JsonWritable;
 
 import java.awt.*;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -21,11 +22,13 @@ public class Driver implements JsonWritable {
 
     public static final int MINIMUM_PACKAGES = 5;
     public static final int MAXIMUM_PACKAGES = 35;
-    private String driverName;
-    private String driverID;
-    private String licensePlate;
+    private final String driverName;
+    private final String driverID;
+    private final String licensePlate;
     private Point lastSeenLocation;
-    private PackagesList driversDeliveries;
+    private int lastSeenLocationX;
+    private int lastSeenLocationY;
+    private final PackagesList driversDeliveries;
     private Package currentPackageDelivering;
     private boolean firstDelivery;
 
@@ -72,11 +75,11 @@ public class Driver implements JsonWritable {
     }
 
     public int getLastSeenLocationx() {
-        return lastSeenLocation.x;
+        return lastSeenLocationX;
     }
 
     public int getLastSeenLocationy() {
-        return lastSeenLocation.y;
+        return lastSeenLocationY;
     }
 
     public static int getMinimumPackages() {
@@ -87,6 +90,22 @@ public class Driver implements JsonWritable {
         return MAXIMUM_PACKAGES;
     }
 
+    //setters
+    public void setLastSeenLocationX(int lastSeenLocation) {
+        this.lastSeenLocationX = lastSeenLocation;
+    }
+
+    public void setLastSeenLocationY(int lastSeenLocation) {
+        this.lastSeenLocationY = lastSeenLocation;
+    }
+
+    public void setFirstDelivery(boolean trueOrFalse) {
+        this.firstDelivery = trueOrFalse;
+    }
+
+    public void setLastSeenLocation(Point lastSeenLocation) {
+        this.lastSeenLocation = lastSeenLocation;
+    }
 
     //EFFECTS: if driversDeliveres > MINIMUM_PACKAGES return true, else returns false
     public boolean reachedMinimumNumberofDeliveries() {
@@ -99,7 +118,7 @@ public class Driver implements JsonWritable {
     }
 
     //MODIFIES: this
-    //EFFECTS: completes all of the drivers deliveries
+    //EFFECTS:  completes all of the drivers deliveries
     public boolean completeAllDeliveries() {
         driversDeliveries.getAllPackages().clear();
         return true;
@@ -107,7 +126,7 @@ public class Driver implements JsonWritable {
 
     //REQUIRES: Package p does NOT already exist in driversDeliveries
     //MODIFIES: this
-    //EFFECTS: adds Package p to driversDeliveries
+    //EFFECTS:  adds Package p to driversDeliveries
     public void addPackage(Package p) {
         if (driversDeliveries.getAllPackages().size() < MAXIMUM_PACKAGES) {
             driversDeliveries.addPackage(p);
@@ -116,7 +135,7 @@ public class Driver implements JsonWritable {
 
     //REQUIRES: Package p to be in driversDeliveries
     //MODIFIES: this
-    //EFFECTS: if driversDelivers > MINIMUM_PACKAGES, remove Package p and return true, otherwise false
+    //EFFECTS:  if driversDelivers > MINIMUM_PACKAGES, remove Package p and return true, otherwise false
     public boolean removePackage(Package p) {
         if (driversDeliveries.getAllPackages().size() > MINIMUM_PACKAGES) {
             driversDeliveries.removePackage(p);
@@ -136,6 +155,8 @@ public class Driver implements JsonWritable {
             driversDeliveries.removePackage(currentPackageDelivering);
             firstDelivery = false;
             this.lastSeenLocation = currentPackageDelivering.getDeliveryLocation();
+            this.lastSeenLocationX = currentPackageDelivering.getDeliveryLocation().x;
+            this.lastSeenLocationY = currentPackageDelivering.getDeliveryLocation().y;
             currentPackageDelivering.setStatusToDelivered();
             return true;
         }
@@ -156,10 +177,11 @@ public class Driver implements JsonWritable {
         return closest;
     }
 
-    //MODIFIES: this
+    //MODIFIES:this
     //EFFECTS: finds next nearest delivery available, updates drivers currentPackageDelivering to it,
-    //removes currentPackageDelivering from driversDeliveries, sets it to delivered
-    // and updates driver lastSeenLocation to the location of currentPackageDelivering, returns currentPackageDelivering
+    //         removes currentPackageDelivering from driversDeliveries, sets it to delivered
+    //         and updates driver lastSeenLocation to the location of currentPackageDelivering,
+    //         returns currentPackageDelivering
     public Package deliverNextPackage() {
         Package closest = findNearestPackage();
         this.currentPackageDelivering = closest;
@@ -170,7 +192,7 @@ public class Driver implements JsonWritable {
     }
 
     //REQUIRES: firstDelivery = false
-    //EFFECTS: returns the closest package to the driver
+    //EFFECTS:  returns the closest package to the driver
     public Package checkNearestPackage() {
         return findNearestPackage();
     }
@@ -181,7 +203,7 @@ public class Driver implements JsonWritable {
     }
 
     //MODIFIES: this
-    //EFFECTS: generates a random unique number (including boundaries) from -> [1000,9999]
+    //EFFECTS:  generates a random unique number (including boundaries) from -> [1000,9999]
     public int generateRandomNumber() {
         Random rand = new Random();
         int r2 = 1000 + rand.nextInt(10000 - 1000);
@@ -202,7 +224,7 @@ public class Driver implements JsonWritable {
         return driverJson;
     }
 
-
+    //MODIFIES: deliveriesArrayJson
     //EFFECTS: returns driversDeliveries stored as a JSON array
     public JSONArray deliveriesToJson() {
         JSONArray deliveriesArrayJson = new JSONArray();

@@ -25,7 +25,7 @@ public class Package implements JsonWritable {
     public String getCustomerPhoneNumber() {
         return this.customerPhoneNumber;
     }
-    
+
     public Point getDeliveryLocation() {
         return this.deliveryLocation;
     }
@@ -61,7 +61,6 @@ public class Package implements JsonWritable {
         deliveryStatus = false;
     }
 
-    //MODIFIES: this
     //EFFECTS: generates a random unique number (including boundaries) from -> [1000,9999]
     public int generateRandomNumber() {
         Random rand = new Random();
