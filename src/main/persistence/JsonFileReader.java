@@ -46,7 +46,6 @@ public class JsonFileReader {
         return contentBuilder.toString();
     }
 
-
     //EFFECTS: parses Driver from JSON object and returns it
     private Driver parseDriverData(JSONObject driverJsonObject) {
         String name = driverJsonObject.getString("driverName");

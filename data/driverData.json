@@ -3,63 +3,8 @@
   "licensePlate": "12121",
   "driverID": "1212",
   "driverName": "khald",
-  "lastSeenLocationY": 71,
+  "lastSeenLocationY": 51,
   "firstDelivery": false,
-  "lastSeenLocationX": 91,
-  "driversDeliveries": [
-    {
-      "deliveryLocationX": 8,
-      "dateOrdered": "9/2020",
-      "packageID": 2383,
-      "customerPhoneNumber": "6012121",
-      "customerName": "Josh",
-      "deliveryStatus": false,
-      "deliveryLocationY": 51
-    },
-    {
-      "deliveryLocationX": 76,
-      "dateOrdered": "7/2020",
-      "packageID": 4253,
-      "customerPhoneNumber": "60qweqw1",
-      "customerName": "Khalid",
-      "deliveryStatus": false,
-      "deliveryLocationY": 92
-    },
-    {
-      "deliveryLocationX": 25,
-      "dateOrdered": "11/2020",
-      "packageID": 9737,
-      "customerPhoneNumber": "60qweqw1",
-      "customerName": "Josh",
-      "deliveryStatus": false,
-      "deliveryLocationY": 81
-    },
-    {
-      "deliveryLocationX": 9,
-      "dateOrdered": "8/2020",
-      "packageID": 5722,
-      "customerPhoneNumber": "60qweqw1",
-      "customerName": "Jack",
-      "deliveryStatus": false,
-      "deliveryLocationY": 13
-    },
-    {
-      "deliveryLocationX": 21,
-      "dateOrdered": "7/2020",
-      "packageID": 5696,
-      "customerPhoneNumber": "60qweqw1",
-      "customerName": "Saif",
-      "deliveryStatus": false,
-      "deliveryLocationY": 46
-    },
-    {
-      "deliveryLocationX": 39,
-      "dateOrdered": "6/2020",
-      "packageID": 9789,
-      "customerPhoneNumber": "60qweqw1",
-      "customerName": "Yara",
-      "deliveryStatus": false,
-      "deliveryLocationY": 32
-    }
-  ]
+  "lastSeenLocationX": 8,
+  "driversDeliveries": []
 }
