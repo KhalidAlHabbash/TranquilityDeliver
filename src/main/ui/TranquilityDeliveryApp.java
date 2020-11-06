@@ -33,7 +33,7 @@ public class TranquilityDeliveryApp {
     //MODIFIES: this
     //EFFECTS: collects driver information, and creates a driver object with it
     public void runapp() {
-        System.out.println("-------------------------Tranquility Deliver-------------------------");
+        System.out.println("-------------------------Tranquility Deliver--------------------------");
         System.out.println("To start delivering please provide us with your details.");
         Scanner name = new Scanner(System.in);
         System.out.println("\nFull name: ");
