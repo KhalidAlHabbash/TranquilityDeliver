@@ -1,38 +1,23 @@
-package ui;
+package ui.PopUps;
 
 import model.Driver;
 import model.Package;
+import ui.TranquilityDeliveryApp;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
 /**
  *  Creates a system console that sets up a new driver with name, ID, licensePlate, and number of packages to deliver
  */
 public class DriverSetUp {
-    private Driver dsetUp;
-    private String driverID;
-    private String driverName;
-    private String driverLicensePlate;
+    public Driver driverSetUp;
+    private DriverSetUp dsetUp;
 
     //getters
-    public Driver getDsetUp() {
-        return this.dsetUp;
-    }
-
-    public String getDriverID() {
-        return this.driverID;
-    }
-
-    public String getDriverName() {
-        return this.driverName;
-    }
-
-    public String getDriverLicensePlate() {
-        return this.driverLicensePlate;
+    public Driver getDriver() {
+        return this.driverSetUp;
     }
 
     //sets up and creates a new driver
@@ -41,7 +26,6 @@ public class DriverSetUp {
         JPanel driverPanel = new JPanel();
 
         driverFrame.setSize(300, 250);
-        driverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         driverFrame.add(driverPanel);
         driverPanel.setLayout(null);
@@ -51,8 +35,8 @@ public class DriverSetUp {
         String driverLicensePlate = setUpLicensePlate(driverPanel);
         int numberofPackages = Integer.parseInt(numberOfDeliveries(driverPanel));
 
-        dsetUp = new Driver(driverName, driverID, driverLicensePlate);
-        generatePackagesforDriver(numberofPackages);
+        driverSetUp = new Driver(driverName, driverID, driverLicensePlate);
+        generatePackagesforDriver(numberofPackages, driverSetUp);
 
         signInButton(driverPanel);
         driverFrame.setVisible(true);
@@ -72,7 +56,7 @@ public class DriverSetUp {
 
     //MODIFIES: this
     //EFFECTS: adds packages to the drivers deliveries
-    private void generatePackagesforDriver(int num) {
+    private void generatePackagesforDriver(int num, Driver d) {
         String[] names;
         names = new String[]{"Khalid", "Jay", "Dana", "Josh", "Michael", "Jack", "Saif", "Yara", "Selena", "Kylie",
                 "Lulwa", "Justin", "Emily", "Scofield", "Johan", "Spencer", "Herbert", "Vidales", "Anthony", "Cedric",
@@ -80,10 +64,10 @@ public class DriverSetUp {
                 "Faisal", "Dardas", "Colo", "Mohammed", "Moe"};
         for (int i = 0; i < num; i++) {
             int x = new Random().nextInt(12 + 1) - 1;
-            Package addPackagesToDriver = new Package("60" + driverID + "1",
+            Package addPackagesToDriver = new Package("60" + driverSetUp.getDriverID() + "1",
                     new Point(new Random().nextInt(99), new Random().nextInt(99)), names[i],
                     x + "/2020");
-            dsetUp.addPackage(addPackagesToDriver);
+            d.addPackage(addPackagesToDriver);
         }
     }
 
@@ -94,9 +78,9 @@ public class DriverSetUp {
         nameLabel.setBounds(10, 20, 200, 25);
         driverPanel.add(nameLabel);
         JTextField nameField = new JTextField(20);
-        String driverName = nameField.getText();
         nameField.setBounds(100, 20, 165, 25);
         driverPanel.add(nameField);
+        String driverName = nameField.getText();
         return driverName;
     }
 
@@ -130,13 +114,8 @@ public class DriverSetUp {
     private void signInButton(JPanel driverPanel) {
         JButton signIn = new JButton("Sign in");
         signIn.setBounds(100, 200, 80, 25);
-        signIn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new TranquilityDeliveryAppGUI();
-            }
-        });
         driverPanel.add(signIn);
+        signIn.addActionListener(e -> new TranquilityDeliveryApp(driverSetUp));
     }
 }
 

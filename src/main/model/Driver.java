@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.JsonWritable;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 import java.util.Random;
@@ -18,7 +19,7 @@ import java.util.Random;
  * A driver is able to add packages, remove packages, find out how many packages left to deliver,
  * know the location of each package, and find out which package to deliver next according to which is closest.
  */
-public class Driver implements JsonWritable {
+public class Driver extends JPanel implements JsonWritable {
 
     public static final int MINIMUM_PACKAGES = 5;
     public static final int MAXIMUM_PACKAGES = 35;
