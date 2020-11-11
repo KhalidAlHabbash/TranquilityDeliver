@@ -1,6 +1,6 @@
-package ui.Buttons;
+package ui.buttons;
 
-import ui.PopUps.ShowAllPackages;
+import ui.popups.ShowAllPackages;
 import ui.TranquilityDeliveryApp;
 
 import javax.swing.*;

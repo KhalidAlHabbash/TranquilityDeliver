@@ -1,4 +1,4 @@
-package ui.Buttons;
+package ui.buttons;
 
 import model.Driver;
 import ui.TranquilityDeliveryApp;
@@ -59,12 +59,15 @@ public abstract class Button {
     }
 
     // EFFECTS: default behaviour does nothing
-    public void buttonPressed(MouseEvent e) {}
+    public void buttonPressed(MouseEvent e) {
+    }
 
     // EFFECTS: default behaviour does nothing
-    public void buttonRelease(MouseEvent e) {}
+    public void buttonRelease(MouseEvent e) {
+    }
 
     // EFFECTS: default behaviour does nothing
-    public void buttonClicked(MouseEvent e) {}
+    public void buttonClicked(MouseEvent e) {
+    }
 
 }

@@ -1,4 +1,4 @@
-package ui.PopUps;
+package ui.popups;
 
 import model.Driver;
 import model.Package;
@@ -19,7 +19,7 @@ public class ShowAllPackages {
     //sets up and creates a new driver
     public ShowAllPackages(Driver d) {
         JFrame deliveresFrame = new JFrame();
-        deliveresFrame.setBackground(Color.BLUE);
+        deliveresFrame.setBackground(Color.lightGray);
         deliveresFrame.setSize(500, 500);
         this.driver = d;
         deliveresFrame.setTitle(driver.getDriverName());

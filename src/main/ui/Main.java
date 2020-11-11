@@ -1,6 +1,6 @@
 package ui;
 
-import ui.PopUps.DriverSetUp;
+import ui.popups.DriverSetUp;
 
 /**
  * Main method to run TranquilityDelivery App

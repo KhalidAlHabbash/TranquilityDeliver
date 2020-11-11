@@ -1,19 +1,19 @@
-package ui.PopUps;
+package ui.popups;
 
 import model.Driver;
-import model.Package;
 import ui.TranquilityDeliveryApp;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *  Creates a system console that sets up a new driver with name, ID, licensePlate, and number of packages to deliver
  */
 public class DriverSetUp {
     public Driver driverSetUp;
-    private DriverSetUp dsetUp;
+    JFrame driverFrame;
 
     //getters
     public Driver getDriver() {
@@ -22,8 +22,9 @@ public class DriverSetUp {
 
     //sets up and creates a new driver
     public DriverSetUp() {
-        JFrame driverFrame = new JFrame();
+        driverFrame = new JFrame();
         JPanel driverPanel = new JPanel();
+        driverPanel.setBackground(Color.lightGray);
 
         driverFrame.setSize(300, 250);
 
@@ -33,43 +34,43 @@ public class DriverSetUp {
         String driverName = setUpDriverName(driverPanel);
         String driverID = setUpDriverID(driverPanel);
         String driverLicensePlate = setUpLicensePlate(driverPanel);
-        int numberofPackages = Integer.parseInt(numberOfDeliveries(driverPanel));
 
         driverSetUp = new Driver(driverName, driverID, driverLicensePlate);
-        generatePackagesforDriver(numberofPackages, driverSetUp);
 
         signInButton(driverPanel);
         driverFrame.setVisible(true);
     }
 
-    private String numberOfDeliveries(JPanel driverPanel) {
-        JLabel numberOfDelivery = new JLabel("# of packages: ");
-        numberOfDelivery.setBounds(10, 169, 200, 25);
-        driverPanel.add(numberOfDelivery);
-        JFormattedTextField deliveryField = new JFormattedTextField(20);
-        deliveryField.setBounds(100, 169, 165, 25);
-        String numberOfDeliveries = deliveryField.getText();
-        driverPanel.add(deliveryField);
+//    private int numberOfDeliveries(JPanel driverPanel) {
+//        JLabel numberOfDelivery = new JLabel("# of packages: ");
+//        numberOfDelivery.setBounds(10, 169, 200, 25);
+//        driverPanel.add(numberOfDelivery);
+//        JFormattedTextField deliveryField = new JFormattedTextField(5);
+//        int numberOfDeliveries = Integer.parseInt(JOptionPane.showInputDialog(
+//                null,"# of Packages: "));
+//        deliveryField.setBounds(100, 169, 165, 25);
+////        String numberOfDeliveries = deliveryField.getText();
+//        driverPanel.add(deliveryField);
+//
+//        return numberOfDeliveries;
+//    }
 
-        return numberOfDeliveries;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: adds packages to the drivers deliveries
-    private void generatePackagesforDriver(int num, Driver d) {
-        String[] names;
-        names = new String[]{"Khalid", "Jay", "Dana", "Josh", "Michael", "Jack", "Saif", "Yara", "Selena", "Kylie",
-                "Lulwa", "Justin", "Emily", "Scofield", "Johan", "Spencer", "Herbert", "Vidales", "Anthony", "Cedric",
-                "Sara", "Sarah", "Maria", "Susu", "Sophie", "Manveer", "Lutfi", "Ismail", "Yasmeen", "Reina",
-                "Faisal", "Dardas", "Colo", "Mohammed", "Moe"};
-        for (int i = 0; i < num; i++) {
-            int x = new Random().nextInt(12 + 1) - 1;
-            Package addPackagesToDriver = new Package("60" + driverSetUp.getDriverID() + "1",
-                    new Point(new Random().nextInt(99), new Random().nextInt(99)), names[i],
-                    x + "/2020");
-            d.addPackage(addPackagesToDriver);
-        }
-    }
+//    //MODIFIES: this
+//    //EFFECTS: adds packages to the drivers deliveries
+//    private void generatePackagesforDriver(int num, Driver d) {
+//        String[] names;
+//        names = new String[]{"Khalid", "Jay", "Dana", "Josh", "Michael", "Jack", "Saif", "Yara", "Selena", "Kylie",
+//                "Lulwa", "Justin", "Emily", "Scofield", "Johan", "Spencer", "Herbert", "Vidales", "Anthony", "Cedric",
+//                "Sara", "Sarah", "Maria", "Susu", "Sophie", "Manveer", "Lutfi", "Ismail", "Yasmeen", "Reina",
+//                "Faisal", "Dardas", "Colo", "Mohammed", "Moe"};
+//        for (int i = 0; i < num; i++) {
+//            int x = new Random().nextInt(12 + 1) - 1;
+//            Package addPackagesToDriver = new Package("60" + driverSetUp.getDriverID() + "1",
+//                    new Point(new Random().nextInt(99), new Random().nextInt(99)), names[i],
+//                    x + "/2020");
+//            d.addPackage(addPackagesToDriver);
+//        }
+//    }
 
     //MODIFIES: this
     //EFFECTS: sets up driverName field
@@ -115,7 +116,14 @@ public class DriverSetUp {
         JButton signIn = new JButton("Sign in");
         signIn.setBounds(100, 200, 80, 25);
         driverPanel.add(signIn);
-        signIn.addActionListener(e -> new TranquilityDeliveryApp(driverSetUp));
+        signIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                driverFrame.dispose();
+                new NumberOfPackagesPopUp(driverSetUp);
+            }
+        });
+
     }
 }
 

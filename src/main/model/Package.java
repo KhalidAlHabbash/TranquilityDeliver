@@ -3,7 +3,7 @@ package model;
 import org.json.JSONObject;
 import persistence.JsonWritable;
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.Date;
 import java.util.Random;
 
@@ -13,6 +13,7 @@ import java.util.Random;
  * dateOrdered, and package delivery status.
  */
 public class Package implements JsonWritable {
+    public static final int PACKAGE_PIXELS = 30;
 
     private int packageID;
     private String customerPhoneNumber;
@@ -80,5 +81,6 @@ public class Package implements JsonWritable {
         jsonPackage.put("deliveryStatus", this.deliveryStatus);
         return jsonPackage;
     }
+
 }
 

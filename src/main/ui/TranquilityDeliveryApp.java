@@ -1,8 +1,9 @@
 package ui;
 
 import model.Driver;
-import ui.Buttons.*;
-import ui.Buttons.Button;
+import model.Package;
+import ui.buttons.*;
+import ui.buttons.Button;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,6 +48,7 @@ public class TranquilityDeliveryApp extends JFrame {
 
     public TranquilityDeliveryApp(Driver d) {
         super("Tranquility Deliver");
+        setBackground(Color.LIGHT_GRAY);
         this.appDriver = d;
         initializeFields();
         initializeGraphics();
@@ -63,9 +65,20 @@ public class TranquilityDeliveryApp extends JFrame {
     // EFFECTS:  draws the JFrame window where the app will operate, and populates the buttons to be used
     //           to manipulate this drawing
     private void initializeGraphics() {
+        add(new MyPanel());
+        pack();
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         createTools();
+//        DrawCar car = new DrawCar(appDriver.getCurrentPackageDelivering().getDeliveryLocation().x,
+//                appDriver.getCurrentPackageDelivering().getDeliveryLocation().y);
+        JPanel driverArea = new JPanel();
+        driverArea.setBackground(Color.lightGray);
+        driverArea.setLayout(new GridLayout(1, 2));
+        driverArea.setSize(new Dimension(0, 0));
+        add(driverArea, BorderLayout.NORTH);
+
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -92,6 +105,7 @@ public class TranquilityDeliveryApp extends JFrame {
     // EFFECTS:  a helper method which declares and instantiates all tools
     private void createTools() {
         JPanel buttonArea = new JPanel();
+        buttonArea.setBackground(Color.lightGray);
         buttonArea.setLayout(new GridLayout(0, 1));
         buttonArea.setSize(new Dimension(0, 0));
         add(buttonArea, BorderLayout.SOUTH);
@@ -162,4 +176,35 @@ public class TranquilityDeliveryApp extends JFrame {
         }
     }
 
+    private void drawPackage(Graphics graphics) {
+        final double FILL_PERCENT = 0.75;
+        final int OFFSET = (int) (Package.PACKAGE_PIXELS * (1.0 - FILL_PERCENT)) / 2;
+        final int SIZE = (int) (Package.PACKAGE_PIXELS * FILL_PERCENT);
+        Point packagePosition = appDriver.getCurrentPackageDelivering().getDeliveryLocation();
+
+        graphics.setColor(Color.CYAN);
+        graphics.fillRect(packagePosition.getLocation().x + OFFSET,
+                packagePosition.getLocation().y + OFFSET,
+                SIZE, SIZE);
+    }
+
+    class MyPanel extends JPanel {
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+
+        }
+
+        @Override
+        public Dimension getPreferredSize() {
+            return new Dimension(250, 250);
+        }
+
+
+    }
+
+
 }
+
+
