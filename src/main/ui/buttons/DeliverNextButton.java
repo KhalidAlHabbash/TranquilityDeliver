@@ -28,6 +28,12 @@ public class DeliverNextButton extends Button {
         @Override
         public void actionPerformed(ActionEvent e) {
             driverB.deliverNextPackage();
+//            int numberOfDeliveries = driverB.getDriversDeliveries().getAllPackages().size();
+//            while (numberOfDeliveries >= 0) {
+//                app.repaint(driverB.getCurrentPackageDelivering().getDeliveryLocation().x,
+//                        driverB.getCurrentPackageDelivering().getDeliveryLocation().y, 20, 20);
+//                numberOfDeliveries--;
         }
     }
 }
+

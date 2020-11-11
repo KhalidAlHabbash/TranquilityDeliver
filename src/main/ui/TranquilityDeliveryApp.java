@@ -12,15 +12,17 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class TranquilityDeliveryApp extends JFrame {
 
-    public static final int WIDTH = 1000;
-    public static final int HEIGHT = 700;
+    public static final int WIDTH = 400;
+    public static final int HEIGHT = 400;
 
-    private Driver appDriver;
+    protected Driver appDriver;
 
     private List<Button> buttons;
     private Button activeButton;
+    private JPanel driverArea;
 
     //getters
     public Driver getAppDriver() {
@@ -65,22 +67,18 @@ public class TranquilityDeliveryApp extends JFrame {
     // EFFECTS:  draws the JFrame window where the app will operate, and populates the buttons to be used
     //           to manipulate this drawing
     private void initializeGraphics() {
-        add(new MyPanel());
-        pack();
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        createTools();
+        driverArea = new JPanel();
+        driverArea.setBackground(Color.WHITE);
+        setLayout(new BorderLayout());
 //        DrawCar car = new DrawCar(appDriver.getCurrentPackageDelivering().getDeliveryLocation().x,
 //                appDriver.getCurrentPackageDelivering().getDeliveryLocation().y);
-        JPanel driverArea = new JPanel();
-        driverArea.setBackground(Color.lightGray);
-        driverArea.setLayout(new GridLayout(1, 2));
-        driverArea.setSize(new Dimension(0, 0));
-        add(driverArea, BorderLayout.NORTH);
-
-
+        add(driverArea, BorderLayout.CENTER);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        createTools();
+        pack();
         setVisible(true);
 
     }
@@ -176,35 +174,41 @@ public class TranquilityDeliveryApp extends JFrame {
         }
     }
 
-    private void drawPackage(Graphics graphics) {
-        final double FILL_PERCENT = 0.75;
-        final int OFFSET = (int) (Package.PACKAGE_PIXELS * (1.0 - FILL_PERCENT)) / 2;
-        final int SIZE = (int) (Package.PACKAGE_PIXELS * FILL_PERCENT);
-        Point packagePosition = appDriver.getCurrentPackageDelivering().getDeliveryLocation();
-
-        graphics.setColor(Color.CYAN);
-        graphics.fillRect(packagePosition.getLocation().x + OFFSET,
-                packagePosition.getLocation().y + OFFSET,
-                SIZE, SIZE);
+    @Override
+    public void paint(Graphics g) {
+        driverArea.paint(g);
+        List<Color> colors = getColors();
+        for (Package p : appDriver.getDriversDeliveries().getAllPackages()) {
+            for (Color c : colors) {
+                g.drawOval(p.getDeliveryLocation().x, p.getDeliveryLocation().y, 20, 20);
+                g.fillOval(p.getDeliveryLocation().x, p.getDeliveryLocation().y, 20, 20);
+                g.setColor(c);
+                colors.remove(c);
+                break;
+            }
+        }
     }
 
-    class MyPanel extends JPanel {
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-
-        }
-
-        @Override
-        public Dimension getPreferredSize() {
-            return new Dimension(250, 250);
-        }
-
-
+    //EFFECTS: adds colors to allColors
+    private List<Color> getColors() {
+        List<Color> allColors = new ArrayList<>();
+        allColors.add(Color.BLUE);
+        allColors.add(Color.BLACK);
+        allColors.add(Color.CYAN);
+        allColors.add(Color.GREEN);
+        allColors.add(Color.MAGENTA);
+        allColors.add(Color.PINK);
+        allColors.add(Color.RED);
+        allColors.add(Color.yellow);
+        allColors.add(Color.DARK_GRAY);
+        allColors.add(Color.ORANGE);
+        allColors.add(Color.WHITE);
+        allColors.add(Color.darkGray);
+        allColors.add(Color.lightGray);
+        allColors.add(Color.PINK);
+        allColors.add(Color.RED);
+        return allColors;
     }
-
-
 }
 
 
