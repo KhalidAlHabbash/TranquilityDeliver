@@ -2,34 +2,32 @@ package ui.popups;
 
 import model.Driver;
 import model.Package;
-import org.w3c.dom.ranges.Range;
 import ui.TranquilityDeliveryApp;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 public class NumberOfPackagesPopUp {
     private Driver driver;
-    int input;
+    private int input;
 
     public NumberOfPackagesPopUp(Driver d) {
         this.driver = d;
+        initializeSound();
         numberOfDeliveries();
     }
 
     private void numberOfDeliveries() {
-//        JOptionPane popUp = new JOptionPane();
-//        String value = popUp.showInputDialog("Number of packages to deliver:", 0);
-//        int choice = Integer.parseInt(value);
-//        continueFromResult(choice);
-        Object[] choices = {15,10,5};
-         input = JOptionPane.showOptionDialog(null, "Choose from the following options:",
-                "Packages", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                null, choices, choices[0]);
+        Object[] choices = {15, 10, 5};
+        input = JOptionPane.showOptionDialog(null, "How many packages to deliver today "
+                        + driver.getDriverName() + ":", "Packages",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
 
         continueFromResult(input);
-
     }
 
     private void continueFromResult(int choice) {
@@ -47,23 +45,6 @@ public class NumberOfPackagesPopUp {
         }
     }
 
-//        JSpinner n = new JSpinner();
-//        n.setBackground(Color.gray);
-//        int input = n.showOptionDialog(null, "# of Packages", " Packages",
-//                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, 0);
-//
-//        if (input == JOptionPane.OK_OPTION) {
-//            generatePackagesforDriver(input,driver);
-//            new TranquilityDeliveryApp(driver);
-
-
-//        JOptionPane n = new JOptionPane();
-//        int numberOfDeliveries = Integer.parseInt(n.showInputDialog(
-//                null, "# of Packages: ",0));
-//        n.action
-//
-//        return numberOfDeliveries;
-
     //MODIFIES: this
     //EFFECTS: adds packages to the drivers deliveries
     private void generatePackagesforDriver(int choice, Driver d) {
@@ -78,6 +59,18 @@ public class NumberOfPackagesPopUp {
                     new Point(new Random().nextInt(99), new Random().nextInt(99)), names[i],
                     x + "/2020");
             d.addPackage(addPackagesToDriver);
+        }
+    }
+
+    private void initializeSound() {
+        String soundName = "JavaTDApp.wav";
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -4,19 +4,24 @@ import model.Driver;
 import model.Package;
 import ui.buttons.*;
 import ui.buttons.Button;
+import ui.images.CarImage;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class TranquilityDeliveryApp extends JFrame {
 
-    public static final int WIDTH = 400;
-    public static final int HEIGHT = 400;
+    private static final int WIDTH = 400;
+    private static final int HEIGHT = 400;
 
     protected Driver appDriver;
 
@@ -52,9 +57,9 @@ public class TranquilityDeliveryApp extends JFrame {
         super("Tranquility Deliver");
         setBackground(Color.LIGHT_GRAY);
         this.appDriver = d;
+        initializeSound();
         initializeFields();
         initializeGraphics();
-//        initializeSound();
         initializeInteraction();
     }
 
@@ -81,6 +86,18 @@ public class TranquilityDeliveryApp extends JFrame {
         pack();
         setVisible(true);
 
+    }
+
+    private void initializeSound() {
+        String soundName = "JavaTDApp.wav";
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -129,6 +146,7 @@ public class TranquilityDeliveryApp extends JFrame {
     private void handleMousePressed(MouseEvent e) {
         if (activeButton != null) {
             activeButton.buttonPressed(e);
+            initializeSound();
         }
         repaint();
     }
@@ -138,6 +156,7 @@ public class TranquilityDeliveryApp extends JFrame {
     private void handleMouseReleased(MouseEvent e) {
         if (activeButton != null) {
             activeButton.buttonRelease(e);
+
         }
         repaint();
     }
@@ -155,6 +174,7 @@ public class TranquilityDeliveryApp extends JFrame {
 
         // EFFECTS: Forward mouse pressed event to the active tool
         public void mousePressed(MouseEvent e) {
+            initializeSound();
             handleMousePressed(translateEvent(e));
         }
 
@@ -180,12 +200,21 @@ public class TranquilityDeliveryApp extends JFrame {
         List<Color> colors = getColors();
         for (Package p : appDriver.getDriversDeliveries().getAllPackages()) {
             for (Color c : colors) {
-                g.drawOval(p.getDeliveryLocation().x, p.getDeliveryLocation().y, 20, 20);
-                g.fillOval(p.getDeliveryLocation().x, p.getDeliveryLocation().y, 20, 20);
+                g.drawOval(p.getDeliveryLocation().x, p.getDeliveryLocation().y, 10, 10);
+                g.fillOval(p.getDeliveryLocation().x, p.getDeliveryLocation().y, 10, 10);
                 g.setColor(c);
                 colors.remove(c);
                 break;
             }
+        }
+        CarImage carImage = new CarImage();
+        BufferedImage img = carImage.getImg();
+        try {
+            g.drawImage(img, appDriver.getCurrentPackageDelivering().getDeliveryLocation().x,
+                    appDriver.getCurrentPackageDelivering().getDeliveryLocation().y, 60, 60,
+                    null);
+        } catch (NullPointerException e) {
+            //pass
         }
     }
 
