@@ -25,9 +25,8 @@ public class SaveButton extends Button {
     }
 
 
-    @Override
     protected void addListener() {
-        new ActionListener() {
+        button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -37,8 +36,8 @@ public class SaveButton extends Button {
                 } catch (FileNotFoundException fileNotFoundException) {
                     fileNotFoundException.printStackTrace();
                 }
-            }
-        };
 
+            }
+        });
     }
 }

@@ -1,5 +1,6 @@
 package ui.buttons;
 
+import model.Package;
 import persistence.JsonFileReader;
 import ui.TranquilityDeliveryApp;
 
@@ -24,19 +25,19 @@ public class LoadButton extends Button {
         addToParent(parent);
     }
 
-    @Override
     protected void addListener() {
-        new ActionListener() {
+        button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     driverB = reader.read();
+                    app.setAppDriver(driverB);
+                    new TranquilityDeliveryApp(driverB);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
             }
-        };
-
+        });
     }
 }
 

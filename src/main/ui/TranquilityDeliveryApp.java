@@ -20,8 +20,8 @@ import java.util.List;
 
 public class TranquilityDeliveryApp extends JFrame {
 
-    private static final int WIDTH = 400;
-    private static final int HEIGHT = 400;
+    private static final int WIDTH = 700;
+    private static final int HEIGHT = 700;
 
     protected Driver appDriver;
 
@@ -40,6 +40,10 @@ public class TranquilityDeliveryApp extends JFrame {
 
     public Button getActiveButton() {
         return activeButton;
+    }
+
+    public void setAppDriver(Driver d) {
+        appDriver = d;
     }
 
     // setter
@@ -200,8 +204,8 @@ public class TranquilityDeliveryApp extends JFrame {
         List<Color> colors = getColors();
         for (Package p : appDriver.getDriversDeliveries().getAllPackages()) {
             for (Color c : colors) {
-                g.drawOval(p.getDeliveryLocation().x, p.getDeliveryLocation().y, 10, 10);
-                g.fillOval(p.getDeliveryLocation().x, p.getDeliveryLocation().y, 10, 10);
+                g.drawOval(p.getDeliveryLocation().x + 100, p.getDeliveryLocation().y + 100, 15, 15);
+                g.fillOval(p.getDeliveryLocation().x + 100, p.getDeliveryLocation().y + 100, 15, 15);
                 g.setColor(c);
                 colors.remove(c);
                 break;
@@ -210,8 +214,8 @@ public class TranquilityDeliveryApp extends JFrame {
         CarImage carImage = new CarImage();
         BufferedImage img = carImage.getImg();
         try {
-            g.drawImage(img, appDriver.getCurrentPackageDelivering().getDeliveryLocation().x,
-                    appDriver.getCurrentPackageDelivering().getDeliveryLocation().y, 60, 60,
+            g.drawImage(img, appDriver.getCurrentPackageDelivering().getDeliveryLocation().x + 100,
+                    appDriver.getCurrentPackageDelivering().getDeliveryLocation().y + 100, 60, 60,
                     null);
         } catch (NullPointerException e) {
             //pass

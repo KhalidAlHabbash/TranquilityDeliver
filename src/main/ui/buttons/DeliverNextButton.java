@@ -31,7 +31,11 @@ public class DeliverNextButton extends Button {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            driverB.deliverNextPackage();
+            if (driverB.isFirstDelivery()) {
+                driverB.startDelivering();
+            } else {
+                driverB.deliverNextPackage();
+            }
         }
     }
 
@@ -46,6 +50,7 @@ public class DeliverNextButton extends Button {
             e.printStackTrace();
         }
     }
-
 }
+
+
 
