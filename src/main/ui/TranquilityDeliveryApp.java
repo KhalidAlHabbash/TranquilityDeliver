@@ -2,8 +2,8 @@ package ui;
 
 import model.Driver;
 import model.Package;
-import ui.buttons.*;
 import ui.buttons.Button;
+import ui.buttons.*;
 import ui.images.CarImage;
 
 import javax.sound.sampled.*;
@@ -29,17 +29,20 @@ public class TranquilityDeliveryApp extends JFrame {
     private Button activeButton;
     private JPanel driverArea;
 
+    //EFFECTS: sets app title, background, and driver, and initializes the app
+    public TranquilityDeliveryApp(Driver d) {
+        super("Tranquility Deliver");
+        setBackground(Color.LIGHT_GRAY);
+        this.appDriver = d;
+        initializeSound();
+        initializeFields();
+        initializeGraphics();
+        initializeInteraction();
+    }
+
     //getters
     public Driver getAppDriver() {
         return appDriver;
-    }
-
-    public List<Button> getButtons() {
-        return buttons;
-    }
-
-    public Button getActiveButton() {
-        return activeButton;
     }
 
     public void setAppDriver(Driver d) {
@@ -57,16 +60,8 @@ public class TranquilityDeliveryApp extends JFrame {
         activeButton = b;
     }
 
-    public TranquilityDeliveryApp(Driver d) {
-        super("Tranquility Deliver");
-        setBackground(Color.LIGHT_GRAY);
-        this.appDriver = d;
-        initializeSound();
-        initializeFields();
-        initializeGraphics();
-        initializeInteraction();
-    }
-
+    //MODIFIES: this
+    //EFFECTS: initiates buttons arraylist and sets activeButton to null
     private void initializeFields() {
         buttons = new ArrayList<>();
         activeButton = null;
@@ -81,8 +76,6 @@ public class TranquilityDeliveryApp extends JFrame {
         driverArea = new JPanel();
         driverArea.setBackground(Color.WHITE);
         setLayout(new BorderLayout());
-//        DrawCar car = new DrawCar(appDriver.getCurrentPackageDelivering().getDeliveryLocation().x,
-//                appDriver.getCurrentPackageDelivering().getDeliveryLocation().y);
         add(driverArea, BorderLayout.CENTER);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -92,6 +85,7 @@ public class TranquilityDeliveryApp extends JFrame {
 
     }
 
+    //EFFECTS: initializes sound
     private void initializeSound() {
         String soundName = "JavaTDApp.wav";
         try {
@@ -135,6 +129,9 @@ public class TranquilityDeliveryApp extends JFrame {
         LoadButton loadButton = new LoadButton(this, buttonArea);
         buttons.add(loadButton);
 
+        AddPackageButton addPackageButton = new AddPackageButton(this, buttonArea);
+        buttons.add(addPackageButton);
+
         DeliverNextButton nextPackageButton = new DeliverNextButton(this, buttonArea);
         buttons.add(nextPackageButton);
 
@@ -174,31 +171,9 @@ public class TranquilityDeliveryApp extends JFrame {
         repaint();
     }
 
-    private class AppMouseListener extends MouseAdapter {
-
-        // EFFECTS: Forward mouse pressed event to the active tool
-        public void mousePressed(MouseEvent e) {
-            initializeSound();
-            handleMousePressed(translateEvent(e));
-        }
-
-        // EFFECTS: Forward mouse released event to the active tool
-        public void mouseReleased(MouseEvent e) {
-            handleMouseReleased(translateEvent(e));
-        }
-
-        // EFFECTS:Forward mouse clicked event to the active tool
-        public void mouseClicked(MouseEvent e) {
-            handleMouseClicked(translateEvent(e));
-        }
-
-        // EFFECTS: translates the mouse event to current drawing's coordinate system
-        private MouseEvent translateEvent(MouseEvent e) {
-            return SwingUtilities.convertMouseEvent(e.getComponent(), e, appDriver);
-        }
-    }
-
     @Override
+    //MODIFIES: this
+    //EFFECTS : paints on driverArea panel
     public void paint(Graphics g) {
         driverArea.paint(g);
         List<Color> colors = getColors();
@@ -241,6 +216,33 @@ public class TranquilityDeliveryApp extends JFrame {
         allColors.add(Color.PINK);
         allColors.add(Color.RED);
         return allColors;
+    }
+
+    /**
+     * translates mouseEvents
+     */
+    private class AppMouseListener extends MouseAdapter {
+
+        // EFFECTS: Forward mouse pressed event to the active tool
+        public void mousePressed(MouseEvent e) {
+            initializeSound();
+            handleMousePressed(translateEvent(e));
+        }
+
+        // EFFECTS: Forward mouse released event to the active tool
+        public void mouseReleased(MouseEvent e) {
+            handleMouseReleased(translateEvent(e));
+        }
+
+        // EFFECTS:Forward mouse clicked event to the active tool
+        public void mouseClicked(MouseEvent e) {
+            handleMouseClicked(translateEvent(e));
+        }
+
+        // EFFECTS: translates the mouse event to current drawing's coordinate system
+        private MouseEvent translateEvent(MouseEvent e) {
+            return SwingUtilities.convertMouseEvent(e.getComponent(), e, appDriver);
+        }
     }
 }
 

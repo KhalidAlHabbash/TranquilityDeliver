@@ -1,7 +1,6 @@
 package ui.popups;
 
 import model.Driver;
-import ui.TranquilityDeliveryApp;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +11,8 @@ import java.awt.event.ActionListener;
  * Creates a system console that sets up a new driver with name, ID, licensePlate, and number of packages to deliver
  */
 public class DriverSetUp {
-    private Driver driverSetUp;
-    private JFrame driverFrame;
+    private final Driver driverSetUp;
+    private final JFrame driverFrame;
 
     //getters
     public Driver getDriver() {

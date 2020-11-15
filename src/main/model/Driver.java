@@ -6,7 +6,6 @@ import persistence.JsonWritable;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 import java.util.Random;
 
 
@@ -26,10 +25,10 @@ public class Driver extends JPanel implements JsonWritable {
     private final String driverName;
     private final String driverID;
     private final String licensePlate;
+    private final PackagesList driversDeliveries;
     private Point lastSeenLocation;
     private int lastSeenLocationX;
     private int lastSeenLocationY;
-    private final PackagesList driversDeliveries;
     private Package currentPackageDelivering;
     private boolean firstDelivery;
 
@@ -46,9 +45,14 @@ public class Driver extends JPanel implements JsonWritable {
         firstDelivery = true;
     }
 
+
     // getters
     public boolean isFirstDelivery() {
         return firstDelivery;
+    }
+
+    public void setFirstDelivery(boolean trueOrFalse) {
+        this.firstDelivery = trueOrFalse;
     }
 
     public PackagesList getDriversDeliveries() {
@@ -75,6 +79,10 @@ public class Driver extends JPanel implements JsonWritable {
         return lastSeenLocation;
     }
 
+    public void setLastSeenLocation(Point lastSeenLocation) {
+        this.lastSeenLocation = lastSeenLocation;
+    }
+
     public int getLastSeenLocationx() {
         return lastSeenLocationX;
     }
@@ -98,14 +106,6 @@ public class Driver extends JPanel implements JsonWritable {
 
     public void setLastSeenLocationY(int lastSeenLocation) {
         this.lastSeenLocationY = lastSeenLocation;
-    }
-
-    public void setFirstDelivery(boolean trueOrFalse) {
-        this.firstDelivery = trueOrFalse;
-    }
-
-    public void setLastSeenLocation(Point lastSeenLocation) {
-        this.lastSeenLocation = lastSeenLocation;
     }
 
     //EFFECTS: if driversDeliveres > MINIMUM_PACKAGES return true, else returns false

@@ -1,6 +1,5 @@
 package ui.buttons;
 
-import model.Package;
 import persistence.JsonFileReader;
 import ui.TranquilityDeliveryApp;
 
@@ -10,10 +9,12 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class LoadButton extends Button {
-    private JsonFileReader reader;
     private static final String JSON_SOURCE = "./data/driverData.json";
+    private JsonFileReader reader;
 
 
+    //MODIFIES: this
+    //EFFECTS: creates a button and initiates the reader
     public LoadButton(TranquilityDeliveryApp app, JComponent parent) {
         super(app, parent);
         reader = new JsonFileReader(JSON_SOURCE);
@@ -28,6 +29,8 @@ public class LoadButton extends Button {
     protected void addListener() {
         button.addActionListener(new ActionListener() {
             @Override
+            //MODIFES: driverB
+            //EFFECTS: reads source file,sets to the new loaded driver and runs a new TranquilityDeliveryApp
             public void actionPerformed(ActionEvent e) {
                 try {
                     driverB = reader.read();

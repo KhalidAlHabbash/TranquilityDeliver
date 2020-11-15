@@ -3,19 +3,17 @@ package ui.buttons;
 import model.Driver;
 import ui.TranquilityDeliveryApp;
 
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 
 public abstract class Button {
-
     protected Driver driverB;
     protected JButton button;
     protected TranquilityDeliveryApp app;
     private boolean active;
 
+    //MODIFIES: this
+    //EFFECTS: constructs an inactive button in the app
     public Button(TranquilityDeliveryApp app, JComponent parent) {
         driverB = app.getAppDriver();
         this.app = app;
@@ -23,15 +21,6 @@ public abstract class Button {
         addToParent(parent);
         active = false;
         addListener();
-    }
-
-    // MODIFIES: this
-    // EFFECTS:  customizes the button used for this tool
-    protected JButton customizeButton(JButton button) {
-        button.setBorderPainted(true);
-        button.setFocusPainted(true);
-        button.setContentAreaFilled(true);
-        return button;
     }
 
     // getters

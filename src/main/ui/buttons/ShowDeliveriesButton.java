@@ -1,7 +1,7 @@
 package ui.buttons;
 
-import ui.popups.ShowAllPackages;
 import ui.TranquilityDeliveryApp;
+import ui.popups.ShowAllPackages;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 public class ShowDeliveriesButton extends Button {
 
+    //EFFECTS: constructs a show deliveries button
     public ShowDeliveriesButton(TranquilityDeliveryApp app, JComponent parent) {
         super(app, parent);
     }
@@ -24,9 +25,13 @@ public class ShowDeliveriesButton extends Button {
         button.addActionListener(new AllPackages());
     }
 
+    /**
+     * implements an action when show packages button is clicked
+     */
     private class AllPackages implements ActionListener {
 
         @Override
+        //EFFECTS: a popup appears the shows all drivers deliveries
         public void actionPerformed(ActionEvent e) {
             new ShowAllPackages(driverB);
         }

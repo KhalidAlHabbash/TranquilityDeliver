@@ -1,65 +1,10 @@
 {
-  "currentPackageDelivering": "model.Package@6d09ba98",
+  "currentPackageDelivering": "model.Package@61dae3c7",
   "licensePlate": "",
   "driverID": "",
   "driverName": "",
-  "lastSeenLocationY": 23,
+  "lastSeenLocationY": 49,
   "firstDelivery": false,
-  "lastSeenLocationX": 21,
-  "driversDeliveries": [
-    {
-      "deliveryLocationX": 39,
-      "dateOrdered": "7/2020",
-      "packageID": 3419,
-      "customerPhoneNumber": "601",
-      "customerName": "Jay",
-      "deliveryStatus": false,
-      "deliveryLocationY": 37
-    },
-    {
-      "deliveryLocationX": 87,
-      "dateOrdered": "1/2020",
-      "packageID": 4173,
-      "customerPhoneNumber": "601",
-      "customerName": "Dana",
-      "deliveryStatus": false,
-      "deliveryLocationY": 67
-    },
-    {
-      "deliveryLocationX": 53,
-      "dateOrdered": "5/2020",
-      "packageID": 7944,
-      "customerPhoneNumber": "601",
-      "customerName": "Michael",
-      "deliveryStatus": false,
-      "deliveryLocationY": 86
-    },
-    {
-      "deliveryLocationX": 93,
-      "dateOrdered": "0/2020",
-      "packageID": 7904,
-      "customerPhoneNumber": "601",
-      "customerName": "Jack",
-      "deliveryStatus": false,
-      "deliveryLocationY": 40
-    },
-    {
-      "deliveryLocationX": 81,
-      "dateOrdered": "0/2020",
-      "packageID": 4571,
-      "customerPhoneNumber": "601",
-      "customerName": "Saif",
-      "deliveryStatus": false,
-      "deliveryLocationY": 59
-    },
-    {
-      "deliveryLocationX": 58,
-      "dateOrdered": "3/2020",
-      "packageID": 9154,
-      "customerPhoneNumber": "601",
-      "customerName": "Selena",
-      "deliveryStatus": false,
-      "deliveryLocationY": 15
-    }
-  ]
+  "lastSeenLocationX": 48,
+  "driversDeliveries": []
 }

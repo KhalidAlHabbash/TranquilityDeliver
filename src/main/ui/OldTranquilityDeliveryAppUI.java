@@ -1,7 +1,7 @@
 package ui;
 
-import model.Package;
 import model.Driver;
+import model.Package;
 import persistence.JsonFileReader;
 import persistence.JsonFileWriter;
 

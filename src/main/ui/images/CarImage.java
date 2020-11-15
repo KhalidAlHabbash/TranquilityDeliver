@@ -9,10 +9,13 @@ public class CarImage {
     private BufferedImage img;
     private static final String imageDestination = "carImageJava.png";
 
+    //getter
     public BufferedImage getImg() {
         return img;
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets img to the image read from imageDestination
     public CarImage() {
         try {
             img = ImageIO.read(new File(imageDestination));

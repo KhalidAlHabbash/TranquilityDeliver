@@ -2,15 +2,13 @@ package ui.buttons;
 
 import ui.TranquilityDeliveryApp;
 
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
 public class DeliverNextButton extends Button {
 
+    //EFFECTS: constructs a deliver next package button
     public DeliverNextButton(TranquilityDeliveryApp app, JComponent parent) {
         super(app, parent);
     }
@@ -18,7 +16,6 @@ public class DeliverNextButton extends Button {
     @Override
     protected void createButton(JComponent parent) {
         button = new JButton("Deliver next package");
-        initializeSound();
         addToParent(parent);
     }
 
@@ -27,27 +24,19 @@ public class DeliverNextButton extends Button {
         button.addActionListener(new DeliverNextPackageClickHandler());
     }
 
+    /**
+     * implements an action when deliver next package button is clicked
+     */
     private class DeliverNextPackageClickHandler implements ActionListener {
 
         @Override
+        //EFFECTS: delivers the next package when deliver next package button is clicked
         public void actionPerformed(ActionEvent e) {
             if (driverB.isFirstDelivery()) {
                 driverB.startDelivering();
             } else {
                 driverB.deliverNextPackage();
             }
-        }
-    }
-
-    private void initializeSound() {
-        String soundName = "JavaTDApp.wav";
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-            e.printStackTrace();
         }
     }
 }

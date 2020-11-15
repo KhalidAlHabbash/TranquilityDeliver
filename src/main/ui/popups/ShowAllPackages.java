@@ -9,12 +9,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class ShowAllPackages {
-    private Driver driver;
-
-    //getters
-    public Driver getDsetUp() {
-        return this.driver;
-    }
+    private final Driver driver;
 
     //sets up and creates a new driver
     public ShowAllPackages(Driver d) {
@@ -28,12 +23,17 @@ public class ShowAllPackages {
         deliveresFrame.setVisible(true);
     }
 
+    //getters
+    public Driver getDsetUp() {
+        return this.driver;
+    }
+
     private void showOffDeliveries(JFrame deliveresFrame) {
-        JLabel allPackages = new JLabel("Packages of the day:",JLabel.LEFT);
+        JLabel allPackages = new JLabel("Packages to deliver: ", JLabel.LEFT);
         allPackages.setVerticalAlignment(JLabel.TOP);
         allPackages.setBounds(0, 0, 200, 25);
         deliveresFrame.add(allPackages);
-        JLabel deliveries = new JLabel("",JLabel.LEFT);
+        JLabel deliveries = new JLabel("", JLabel.LEFT);
         deliveries.setBounds(0, 0, 200, 25);
         deliveries.setText(printPackages(driver.getDriversDeliveries().getAllPackages()));
         deliveresFrame.add(deliveries);

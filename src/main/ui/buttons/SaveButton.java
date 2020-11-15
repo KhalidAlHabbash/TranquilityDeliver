@@ -9,10 +9,12 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
 public class SaveButton extends Button {
-    private JsonFileWriter writer;
     private static final String JSON_SOURCE = "./data/driverData.json";
+    private JsonFileWriter writer;
 
 
+    //MODIFES: this
+    //EFFECTS: constructs a new save button and initiates the writer
     public SaveButton(TranquilityDeliveryApp app, JComponent parent) {
         super(app, parent);
         writer = new JsonFileWriter(JSON_SOURCE);
@@ -28,6 +30,8 @@ public class SaveButton extends Button {
     protected void addListener() {
         button.addActionListener(new ActionListener() {
             @Override
+            //MODIFIES: this
+            //EFFECTS: opens and writes to intended JSON file
             public void actionPerformed(ActionEvent e) {
                 try {
                     writer.open();
