@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class CarImage {
     private BufferedImage img;
-    private static final String imageDestination = "carImageJava.png";
+    private static final String imageDestination = "./data/carImageJava.png";
 
     //getter
     public BufferedImage getImg() {

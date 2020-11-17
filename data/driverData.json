@@ -1,10 +1,83 @@
 {
-  "currentPackageDelivering": "model.Package@61dae3c7",
+  "currentPackageDelivering": "model.Package@67da59fe",
   "licensePlate": "",
   "driverID": "",
   "driverName": "",
   "lastSeenLocationY": 49,
   "firstDelivery": false,
   "lastSeenLocationX": 48,
-  "driversDeliveries": []
+  "driversDeliveries": [
+    {
+      "deliveryLocationX": 54,
+      "dateOrdered": "5/02/2020",
+      "packageID": 7519,
+      "customerPhoneNumber": "604558881",
+      "customerName": "Ronaldo",
+      "deliveryStatus": false,
+      "deliveryLocationY": 92
+    },
+    {
+      "deliveryLocationX": 26,
+      "dateOrdered": "4/15/2020",
+      "packageID": 9336,
+      "customerPhoneNumber": "604259881",
+      "customerName": "Alex",
+      "deliveryStatus": false,
+      "deliveryLocationY": 89
+    },
+    {
+      "deliveryLocationX": 15,
+      "dateOrdered": "2/16/2020",
+      "packageID": 9247,
+      "customerPhoneNumber": "604259981",
+      "customerName": "Josh",
+      "deliveryStatus": false,
+      "deliveryLocationY": 89
+    },
+    {
+      "deliveryLocationX": 24,
+      "dateOrdered": "10/09/2020",
+      "packageID": 2234,
+      "customerPhoneNumber": "778222777",
+      "customerName": "Jay",
+      "deliveryStatus": false,
+      "deliveryLocationY": 88
+    },
+    {
+      "deliveryLocationX": 52,
+      "dateOrdered": "10/05/2020",
+      "packageID": 4917,
+      "customerPhoneNumber": "778222343",
+      "customerName": "Michael Jackson",
+      "deliveryStatus": false,
+      "deliveryLocationY": 90
+    },
+    {
+      "deliveryLocationX": 54,
+      "dateOrdered": "5/02/2020",
+      "packageID": 2471,
+      "customerPhoneNumber": "604558881",
+      "customerName": "Ronaldo",
+      "deliveryStatus": false,
+      "deliveryLocationY": 92
+    },
+    {
+      "deliveryLocationX": 34,
+      "dateOrdered": "7/22/2020",
+      "packageID": 7874,
+      "customerPhoneNumber": "604258881",
+      "customerName": "Macy",
+      "deliveryStatus": false,
+      "deliveryLocationY": 70
+    },
+    {
+      "deliveryLocationX": 26,
+      "dateOrdered": "4/15/2020",
+      "packageID": 1914,
+      "customerPhoneNumber": "604259881",
+      "customerName": "Alex",
+      "deliveryStatus": false,
+      "deliveryLocationY": 89
+    }
+  ]
 }

@@ -63,7 +63,7 @@ public class NumberOfPackagesPopUp {
     }
 
     private void initializeSound() {
-        String soundName = "JavaTDApp.wav";
+        String soundName = "./data/JavaTDApp.wav";
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
