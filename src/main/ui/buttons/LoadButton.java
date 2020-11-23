@@ -26,6 +26,7 @@ public class LoadButton extends Button {
         addToParent(parent);
     }
 
+    @Override
     protected void addListener() {
         button.addActionListener(new ActionListener() {
             @Override

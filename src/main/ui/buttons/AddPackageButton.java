@@ -68,7 +68,6 @@ public class AddPackageButton extends Button {
     @Override
     protected void addListener() {
         button.addActionListener(new AddPackagesButton());
-
     }
 
     /**

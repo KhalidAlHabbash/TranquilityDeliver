@@ -28,6 +28,10 @@ Why are we of benefit?
 - As a user, I want to be able to continue delivering the remaining packages where I have left off, or add more packages to where I have left off.
 - As a user, I want to be able to continue automatically save when I do not want to deliver anymore.
 
+###Phase 4: Task 2
+- Type hierarchy
+    - Super class: Button 
+      - Subclasses: AddPackageButton, DeliverNextButton, LoadButton, SaveButton, ShowDeliveriesButton.
 
 
 
