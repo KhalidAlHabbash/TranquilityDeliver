@@ -9,7 +9,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class PackagesList extends Package {
     protected List<Package> allPackages;
-    private Package currentPackage;
 
     //EFFECTS: constructs an empty package list
     public PackagesList() {

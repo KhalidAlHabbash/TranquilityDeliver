@@ -17,7 +17,6 @@ public class AddPackageButton extends Button {
     public AddPackageButton(TranquilityDeliveryApp app, JComponent parent) {
         super(app, parent);
         createPackages();
-
     }
 
     //EFFECTS: creates packages

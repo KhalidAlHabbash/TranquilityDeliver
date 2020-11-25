@@ -27,12 +27,12 @@ public class OldTranquilityDeliveryAppUI {
     public OldTranquilityDeliveryAppUI() throws FileNotFoundException {
         jsonReader = new JsonFileReader(JSON_SOURCE);
         jsonWriter = new JsonFileWriter(JSON_SOURCE);
-        runapp();
+        runApp();
     }
 
     //MODIFIES: this
     //EFFECTS: collects driver information, and creates a driver object with it
-    public void runapp() {
+    public void runApp() {
         System.out.println("-------------------------Tranquility Deliver--------------------------");
         System.out.println("To start delivering please provide us with your details.");
         Scanner name = new Scanner(System.in);

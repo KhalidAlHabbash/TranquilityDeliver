@@ -12,8 +12,6 @@ import java.util.Random;
  * dateOrdered, and package delivery status.
  */
 public class Package implements JsonWritable {
-    public static final int PACKAGE_PIXELS = 30;
-
     private int packageID;
     private String customerPhoneNumber;
     private Point deliveryLocation;

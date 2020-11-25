@@ -33,5 +33,10 @@ Why are we of benefit?
     - Super class: Button 
       - Subclasses: AddPackageButton, DeliverNextButton, LoadButton, SaveButton, ShowDeliveriesButton.
 
-
+###Phase 4: Task 3
+- To improve my codes design and cleanliness I would:
+  - Refactor the runApp() method in my OldTranquilityDeliveryAppUI class by separating the collection of the Driver's data into another method as this does not adhere to the Single Responsibility Principle.
+  - I would refactor the setting of the location in the startDelivering() method in the Driver class to another method within that class as to improve clarity.
+  - The design for my project also does contain medium to high coupling, I would remove some unnecessary associations such as the association from Button to Driver. The Button class could have access to the Driver class from the TranquilityDeliveryApp class since it has a bi-directional relationship with Driver.
+  - I would also remove the association from Driver to the Package class as it could have access to a certain package from the PackagesList class since the PackagesList class has an association with the Package class.
 
