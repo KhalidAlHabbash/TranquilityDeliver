@@ -1,6 +1,6 @@
 package ui.buttons;
 
-import ui.TranquilityDeliveryApp;
+import ui.CurrentTranquilityDeliveryApp;
 import ui.popups.ShowAllPackages;
 
 import javax.swing.*;
@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class ShowDeliveriesButton extends Button {
 
     //EFFECTS: constructs a show deliveries button
-    public ShowDeliveriesButton(TranquilityDeliveryApp app, JComponent parent) {
+    public ShowDeliveriesButton(CurrentTranquilityDeliveryApp app, JComponent parent) {
         super(app, parent);
     }
 

@@ -1,5 +1,4 @@
 {
-  "currentPackageDelivering": "model.Package@67da59fe",
   "licensePlate": "",
   "driverID": "",
   "driverName": "",
@@ -10,7 +9,7 @@
     {
       "deliveryLocationX": 54,
       "dateOrdered": "5/02/2020",
-      "packageID": 7519,
+      "packageID": 4216,
       "customerPhoneNumber": "604558881",
       "customerName": "Ronaldo",
       "deliveryStatus": false,
@@ -19,7 +18,7 @@
     {
       "deliveryLocationX": 26,
       "dateOrdered": "4/15/2020",
-      "packageID": 9336,
+      "packageID": 9871,
       "customerPhoneNumber": "604259881",
       "customerName": "Alex",
       "deliveryStatus": false,
@@ -28,25 +27,16 @@
     {
       "deliveryLocationX": 15,
       "dateOrdered": "2/16/2020",
-      "packageID": 9247,
+      "packageID": 2429,
       "customerPhoneNumber": "604259981",
       "customerName": "Josh",
       "deliveryStatus": false,
       "deliveryLocationY": 89
     },
     {
-      "deliveryLocationX": 24,
-      "dateOrdered": "10/09/2020",
-      "packageID": 2234,
-      "customerPhoneNumber": "778222777",
-      "customerName": "Jay",
-      "deliveryStatus": false,
-      "deliveryLocationY": 88
-    },
-    {
       "deliveryLocationX": 52,
       "dateOrdered": "10/05/2020",
-      "packageID": 4917,
+      "packageID": 6186,
       "customerPhoneNumber": "778222343",
       "customerName": "Michael Jackson",
       "deliveryStatus": false,
@@ -55,29 +45,38 @@
     {
       "deliveryLocationX": 54,
       "dateOrdered": "5/02/2020",
-      "packageID": 2471,
+      "packageID": 9849,
       "customerPhoneNumber": "604558881",
       "customerName": "Ronaldo",
       "deliveryStatus": false,
       "deliveryLocationY": 92
     },
     {
-      "deliveryLocationX": 34,
-      "dateOrdered": "7/22/2020",
-      "packageID": 7874,
-      "customerPhoneNumber": "604258881",
-      "customerName": "Macy",
+      "deliveryLocationX": 52,
+      "dateOrdered": "10/05/2020",
+      "packageID": 1074,
+      "customerPhoneNumber": "778222343",
+      "customerName": "Michael Jackson",
       "deliveryStatus": false,
-      "deliveryLocationY": 70
+      "deliveryLocationY": 90
     },
     {
-      "deliveryLocationX": 26,
-      "dateOrdered": "4/15/2020",
-      "packageID": 1914,
-      "customerPhoneNumber": "604259881",
-      "customerName": "Alex",
+      "deliveryLocationX": 54,
+      "dateOrdered": "5/02/2020",
+      "packageID": 6956,
+      "customerPhoneNumber": "604558881",
+      "customerName": "Ronaldo",
       "deliveryStatus": false,
-      "deliveryLocationY": 89
+      "deliveryLocationY": 92
+    },
+    {
+      "deliveryLocationX": 24,
+      "dateOrdered": "10/09/2020",
+      "packageID": 3142,
+      "customerPhoneNumber": "778222777",
+      "customerName": "Jay",
+      "deliveryStatus": false,
+      "deliveryLocationY": 88
     }
   ]
 }

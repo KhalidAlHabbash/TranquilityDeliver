@@ -1,7 +1,7 @@
 package ui.buttons;
 
 import model.Package;
-import ui.TranquilityDeliveryApp;
+import ui.CurrentTranquilityDeliveryApp;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class AddPackageButton extends Button {
     private final List<Package> packages = new ArrayList<>();
 
     //EFFECTS: constructs a add package button and creates packages
-    public AddPackageButton(TranquilityDeliveryApp app, JComponent parent) {
+    public AddPackageButton(CurrentTranquilityDeliveryApp app, JComponent parent) {
         super(app, parent);
         createPackages();
     }

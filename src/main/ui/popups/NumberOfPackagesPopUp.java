@@ -2,7 +2,7 @@ package ui.popups;
 
 import model.Driver;
 import model.Package;
-import ui.TranquilityDeliveryApp;
+import ui.CurrentTranquilityDeliveryApp;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -33,15 +33,15 @@ public class NumberOfPackagesPopUp {
     private void continueFromResult(int choice) {
         if (choice == JOptionPane.INFORMATION_MESSAGE) {
             generatePackagesforDriver(10, driver);
-            new TranquilityDeliveryApp(driver);
+            new CurrentTranquilityDeliveryApp(driver);
         }
         if (choice == JOptionPane.ERROR_MESSAGE) {
             generatePackagesforDriver(15, driver);
-            new TranquilityDeliveryApp(driver);
+            new CurrentTranquilityDeliveryApp(driver);
         }
         if (choice == JOptionPane.WARNING_MESSAGE) {
             generatePackagesforDriver(5, driver);
-            new TranquilityDeliveryApp(driver);
+            new CurrentTranquilityDeliveryApp(driver);
         }
     }
 

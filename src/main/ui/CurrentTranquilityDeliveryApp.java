@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TranquilityDeliveryApp extends JFrame {
+public class CurrentTranquilityDeliveryApp extends JFrame {
 
     private static final int WIDTH = 700;
     private static final int HEIGHT = 700;
@@ -30,7 +30,7 @@ public class TranquilityDeliveryApp extends JFrame {
     private JPanel driverArea;
 
     //EFFECTS: sets app title, background, and driver, and initializes the app
-    public TranquilityDeliveryApp(Driver d) {
+    public CurrentTranquilityDeliveryApp(Driver d) {
         super("Tranquility Deliver");
         setBackground(Color.LIGHT_GRAY);
         this.appDriver = d;

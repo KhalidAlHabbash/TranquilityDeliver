@@ -1,7 +1,7 @@
 package ui.buttons;
 
 import persistence.JsonFileWriter;
-import ui.TranquilityDeliveryApp;
+import ui.CurrentTranquilityDeliveryApp;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,7 @@ public class SaveButton extends Button {
 
     //MODIFES: this
     //EFFECTS: constructs a new save button and initiates the writer
-    public SaveButton(TranquilityDeliveryApp app, JComponent parent) {
+    public SaveButton(CurrentTranquilityDeliveryApp app, JComponent parent) {
         super(app, parent);
         writer = new JsonFileWriter(JSON_SOURCE);
     }

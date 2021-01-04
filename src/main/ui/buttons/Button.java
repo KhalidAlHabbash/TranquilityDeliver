@@ -1,7 +1,7 @@
 package ui.buttons;
 
 import model.Driver;
-import ui.TranquilityDeliveryApp;
+import ui.CurrentTranquilityDeliveryApp;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -9,12 +9,12 @@ import java.awt.event.MouseEvent;
 public abstract class Button {
     protected Driver driverB;
     protected JButton button;
-    protected TranquilityDeliveryApp app;
+    protected CurrentTranquilityDeliveryApp app;
     private boolean active;
 
     //MODIFIES: this
     //EFFECTS: constructs an inactive button in the app
-    public Button(TranquilityDeliveryApp app, JComponent parent) {
+    public Button(CurrentTranquilityDeliveryApp app, JComponent parent) {
         driverB = app.getAppDriver();
         this.app = app;
         createButton(parent);

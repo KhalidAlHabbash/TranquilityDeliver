@@ -1,6 +1,6 @@
 package ui.buttons;
 
-import ui.TranquilityDeliveryApp;
+import ui.CurrentTranquilityDeliveryApp;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class DeliverNextButton extends Button {
 
     //EFFECTS: constructs a deliver next package button
-    public DeliverNextButton(TranquilityDeliveryApp app, JComponent parent) {
+    public DeliverNextButton(CurrentTranquilityDeliveryApp app, JComponent parent) {
         super(app, parent);
     }
 
